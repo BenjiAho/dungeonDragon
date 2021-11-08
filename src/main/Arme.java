@@ -1,5 +1,13 @@
 package main;
 
 public class Arme {
-    Arme arme = new Arme();
+    private String arme;
+
+    public Arme(String arme) {
+        this.arme = arme;
+    }
+
+    public String toString(){
+        return arme;
+    }
 }

@@ -7,15 +7,18 @@ public class Magicien {
     private String nomPerso;
     private int lifeLvl;
     private int atk;
-    private String spell;
+    private Spell spell;
     private String potion;
 
+    public String toString() {
+        return nomPerso + ": with " + lifeLvl + " " + "points of life and" + " " + atk + " points of attack. Weapon : "+" "+spell+" "+"with "+potion+"\n__\n";
+    }
 
     public Magicien(String nomPerso, int lifeLvl, int atk, String spell, String potion) {
         this.nomPerso = nomPerso;
         this.lifeLvl = lifeLvl;
         this.atk = atk;
-        this.spell = spell;
+        this.spell = new Spell(spell);
         this.potion = potion;
     }
 
@@ -36,13 +39,6 @@ public class Magicien {
         this.nomPerso = nomPerso;
     }
 
-    public String getSpell() {
-        return spell;
-    }
-
-    public void setSpell(String spell) {
-        this.spell = spell;
-    }
 
     public String getPotion() {
         return potion;
@@ -117,18 +113,18 @@ public class Magicien {
                     break;
                 case "C":
                     System.out.println("set spell: ");
-                    String spell = sc.next();
-                    this.setSpell(spell);
+                    String spells = sc.next();
                     System.out.println("___________________________"
                             + "\nHero's name: " + nomPerso
                             + "\nLife points: " + this.lifeLvl
                             + "\natk points: " + this.atk
-                            + "\nspell: " + spell
+                            + "\nspell: " + spells
                             + "\npotion: " + potion
                             + "\n___________________________");
+                    this.spell = new Spell(spells);
                     break;
                 case "D":
-                    System.out.println("set Shield: ");
+                    System.out.println("set potion: ");
                     String potion = sc.next();
                     this.setPotion(potion);
                     System.out.println("___________________________"
@@ -143,8 +139,9 @@ public class Magicien {
                     System.out.println("End of game");
                     break;
                 case "X":
-                    System.out.println("Exiting program");
+                    System.out.println("Back to menu");
                     condition = false;
+                    break;
             }
         }
     }

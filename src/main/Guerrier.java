@@ -1,21 +1,25 @@
 package main;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Guerrier {
     //3constructeurs sans paramètres, avec nom et avec nom/image/niveau de vie/force d'attaque
     private String nomPerso;
     private int lifeLvl;
     private int atk;
-    private String arme;
     private String bouclier;
+    private Arme arme;
 
+
+    public String toString() {
+        return nomPerso + ": with " + lifeLvl + " " + "points of life and" + " " + atk + " points of attack. Weapon : " + " " + arme + " " + "with " + bouclier + "\n__\n";
+    }
 
     public Guerrier(String nomPerso, int lifeLvl, int atk, String arme, String bouclier) {
         this.nomPerso = nomPerso;
         this.lifeLvl = lifeLvl;
         this.atk = atk;
-        this.arme = arme;
+        this.arme = new Arme(arme);
         this.bouclier = bouclier;
     }
 
@@ -36,13 +40,6 @@ public class Guerrier {
         this.nomPerso = nomPerso;
     }
 
-    public String getArme() {
-        return arme;
-    }
-
-    public void setArme(String arme) {
-        this.arme = arme;
-    }
 
     public String getbouclier() {
         return bouclier;
@@ -77,16 +74,15 @@ public class Guerrier {
         this.setNomPerso(nomPerso);
         boolean condition = true;
         while (condition) {
-        System.out.println("___________________________"
-                + "\nHero's name: " + nomPerso +
-                "\nLife points: " + lifeLvl
-                + "\natk points: " + atk
-                + "\nweapon: " + arme
-                + "\nshield: " + bouclier);
+            System.out.println("___________________________"
+                    + "\nHero's name: " + nomPerso +
+                    "\nLife points: " + lifeLvl
+                    + "\natk points: " + atk
+                    + "\nweapon: " + arme
+                    + "\nshield: " + bouclier);
 
-        System.out.println("Change hero attributes: \nA for life points\nB for atk points\nC for weapon" + "\nD for shield"+ "\nX exit menu" + "\n___________________________");
-        String warriorChoices = sc.next();
-
+            System.out.println("Change hero attributes: \nA for life points\nB for atk points\nC for weapon" + "\nD for shield" + "\nX exit menu" + "\n___________________________");
+            String warriorChoices = sc.next();
 
 
             switch (warriorChoices.toUpperCase()) {
@@ -117,15 +113,15 @@ public class Guerrier {
                     break;
                 case "C":
                     System.out.println("set weapon: ");
-                    String arme = sc.next();
-                    this.setArme(arme);
+                    String armes = sc.next();
                     System.out.println("___________________________"
                             + "\nHero's name: " + nomPerso
                             + "\nLife points: " + this.lifeLvl
                             + "\natk points: " + this.atk
-                            + "\nweapon: " + arme
+                            + "\nweapon: " + armes
                             + "\nshield: " + bouclier
                             + "\n___________________________");
+                    this.arme = new Arme(armes);
                     break;
                 case "D":
                     System.out.println("set Shield: ");
@@ -143,8 +139,9 @@ public class Guerrier {
                     System.out.println("End of game");
                     break;
                 case "X":
-                    System.out.println("Exiting program");
+                    System.out.println("Back to menu");
                     condition = false;
+                    break;
             }
         }
     }
