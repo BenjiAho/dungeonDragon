@@ -17,7 +17,7 @@ public class Menu {
 //            System.out.println(num[i]);
 //        }
 //    }
-
+public static final int mapSize = 64;
     public static  int rollDice(int number, int nSides)
     {
         int position = 1;
@@ -32,10 +32,10 @@ public class Menu {
                 System.out.println("Roll is:  "+roll);
                 position = position + roll;
                 System.out.println("position actuelle: "+position+ "/64");
-                if(position > 64){
-                    position = 64;
+                if(position > mapSize){
+                    position = mapSize;
                 }
-            }while(position < 64);
+            }while(position < mapSize);
         }
         else
         {
