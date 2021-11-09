@@ -23,11 +23,11 @@ public class Magicien {
     }
 
     public Magicien(String nomPerso) {
-        this(nomPerso, 5, 5, "! ", "Bouclier de son grand mort! ");
+        this(nomPerso, 5, 5, "! ", "Potion de son grand mort! ");
     }
 
     public Magicien() {
-        this("GLANDALF", 5, 5, "Avacadabra", "Mana Potion");
+        this("GLANDALF", 6, 15, "Avacadabra", "Viagra Potion");
     }
 
 

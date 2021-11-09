@@ -12,7 +12,7 @@ public class Guerrier {
 
 
     public String toString() {
-        return nomPerso + ": with " + lifeLvl + " " + "points of life and" + " " + atk + " points of attack. Weapon : " + " " + arme + " " + "with " + bouclier + "\n__\n";
+        return nomPerso + ": with " + lifeLvl + " life points and " + atk + " attack's points. Weapon : " + arme + " , shield:" + bouclier + "\n__\n";
     }
 
     public Guerrier(String nomPerso, int lifeLvl, int atk, String arme, String bouclier) {
@@ -28,7 +28,7 @@ public class Guerrier {
     }
 
     public Guerrier() {
-        this("Garrosh", 5, 5, "hâche de ses morts! ", "Deuxième hâche de ses morts! ");
+        this("Garrosh", 10, 10, "hâche de ses morts! ", "Bouclier en tête de bouc! ");
     }
 
 

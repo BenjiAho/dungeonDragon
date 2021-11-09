@@ -10,20 +10,47 @@ public class Menu {
         data.selectHero();
     }
 
+//    public void plateau() {
+//        int num[] = new int[64];
+//        for (int i = 0; i < (num.length); i++) {
+//            num[i]=i+1;
+//            System.out.println(num[i]);
+//        }
+//    }
+
+    public static  int rollDice(int number, int nSides)
+    {
+        int position = 1;
+        int roll = 0;
+//        int i = 1;
+        Random  r = new Random();
+        if(nSides >=3)
+        {
+            do
+            {
+                roll = r.nextInt(nSides)+1;
+                System.out.println("Roll is:  "+roll);
+                position = position + roll;
+                System.out.println("position actuelle: "+position+ "/64");
+                if(position > 64){
+                    position = 64;
+                }
+            }while(position < 64);
+        }
+        else
+        {
+            System.out.println("Error position needs to be from 3");
+        }
+        return position;
+    }
+
     public void selectHero() {
-
-
-//        Scanner scanner = new Scanner(System.in);
-
-//        System.out.println("Create your character : \n1 for Warrior\n2 for Wizard\n3 to leave");
-
-//        int choice = scanner.nextInt();
         ArrayList<Guerrier> warriors = new ArrayList<Guerrier>();
         ArrayList<Magicien> mages = new ArrayList<Magicien>();
         boolean selectCondition = true;
         while (selectCondition) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Créer un personnage? : \n" + " 1-Yes\n" + " 2-No\n"+ " 3-Show Heroes List\n");
+            System.out.println("Créer un personnage? : \n" + " 1-Yes\n" + " 2-No\n" + " 3-Show Heroes List\n 4-START GAME\n");
             int selector = scanner.nextInt();
             switch (selector) {
                 case 1:
@@ -61,8 +88,11 @@ public class Menu {
                     selectCondition = false;
                     break;
                 case 3:
-                    System.out.println("Warriors List: \n"+warriors+"\nMages List: \n"+mages);
-//                    System.out.println("Mages"+mages);
+                    System.out.println("Warriors List: \n" + warriors + "\nMages List: \n" + mages);
+                    break;
+                case 4:
+//                    plateau();
+                    System.out.println("Position finale sur plateau: "+rollDice(1, 6));
                     break;
             }
 
