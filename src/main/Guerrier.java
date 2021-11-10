@@ -2,22 +2,20 @@ package main;
 
 import java.util.*;
 
-public class Guerrier {
+public class Guerrier extends Personnage {
     //3constructeurs sans paramètres, avec nom et avec nom/image/niveau de vie/force d'attaque
-    private String nomPerso;
-    private int lifeLvl;
-    private int atk;
+
     private String bouclier;
     private Arme arme;
 
 
     public String toString() {
-        return nomPerso + ": with " + lifeLvl + " life points and " + atk + " attack's points. Weapon : " + arme + " , shield:" + bouclier + "\n__\n";
+        return nomPerso + ": with " + life + " life points and " + atk + " attack's points. Weapon : " + arme + " , shield:" + bouclier + "\n__\n";
     }
 
-    public Guerrier(String nomPerso, int lifeLvl, int atk, String arme, String bouclier) {
+    public Guerrier(String nomPerso, int life, int atk, String arme, String bouclier) {
         this.nomPerso = nomPerso;
-        this.lifeLvl = lifeLvl;
+        this.life = life;
         this.atk = atk;
         this.arme = new Arme(arme);
         this.bouclier = bouclier;
@@ -36,9 +34,7 @@ public class Guerrier {
         return nomPerso;
     }
 
-    public void setNomPerso(String nomPerso) {
-        this.nomPerso = nomPerso;
-    }
+
 
 
     public String getbouclier() {
@@ -50,20 +46,16 @@ public class Guerrier {
     }
 
     public int getLifeLvl() {
-        return lifeLvl;
+        return life;
     }
 
-    public void setLifeLvl(int lifeLvl) {
-        this.lifeLvl = lifeLvl;
-    }
+
 
     public int getAtk() {
         return atk;
     }
 
-    public void setAtk(int atk) {
-        this.atk = atk;
-    }
+
 
     public void selectionWarrior() {
         //Reading values from user
@@ -76,7 +68,7 @@ public class Guerrier {
         while (condition) {
             System.out.println("___________________________"
                     + "\nHero's name: " + nomPerso +
-                    "\nLife points: " + lifeLvl
+                    "\nLife points: " + life
                     + "\natk points: " + atk
                     + "\nweapon: " + arme
                     + "\nshield: " + bouclier);
@@ -88,24 +80,41 @@ public class Guerrier {
             switch (warriorChoices.toUpperCase()) {
 
                 case "A":
-                    System.out.println("set LifeLvl");
-                    int lifeLvl = sc.nextInt();
-                    this.setLifeLvl(lifeLvl);
+                    boolean validLife = false;
+                    do{
+                        System.out.println("enter life between 5 and 10");
+                        int life = sc.nextInt();
+                        if(life >= 5 && life <= 10){
+                            this.setLifeLvl(life);
+                            validLife = true;
+                        }else{
+                            System.out.println("enter valid value *");
+                        }
+                    }while(!validLife);
                     System.out.println("___________________________"
                             + "\nHero's name: " + nomPerso +
-                            "\nLife points: " + lifeLvl
+                            "\nLife points: " + life
                             + "\natk points: " + atk
                             + "\nweapon: " + arme
                             + "\nshield: " + bouclier
                             + "\n___________________________");
                     break;
                 case "B":
-                    System.out.println("set ATK points");
-                    int atk = sc.nextInt();
-                    this.setAtk(atk);
+                    boolean validAtk = false;
+                    do{
+                        System.out.println("enter atk between 5 and 10");
+                        int atk = sc.nextInt();
+                        if(atk >= 5 && atk <= 10){
+                            this.setLifeLvl(atk);
+                            validAtk = true;
+                        }else{
+                            System.out.println("enter valid value *");
+                        }
+                    }
+                    while (!validAtk);
                     System.out.println("___________________________"
                             + "\nHero's name: " + nomPerso
-                            + "\nLife points: " + this.lifeLvl
+                            + "\nLife points: " + this.life
                             + "\natk points: " + atk
                             + "\nweapon: " + arme
                             + "\nshield: " + bouclier
@@ -116,7 +125,7 @@ public class Guerrier {
                     String armes = sc.next();
                     System.out.println("___________________________"
                             + "\nHero's name: " + nomPerso
-                            + "\nLife points: " + this.lifeLvl
+                            + "\nLife points: " + this.life
                             + "\natk points: " + this.atk
                             + "\nweapon: " + armes
                             + "\nshield: " + bouclier
@@ -129,7 +138,7 @@ public class Guerrier {
                     this.setBouclier(bouclier);
                     System.out.println("___________________________"
                             + "\nHero's name: " + nomPerso
-                            + "\nLife points: " + this.lifeLvl
+                            + "\nLife points: " + this.life
                             + "\natk points: " + this.atk
                             + "\nweapon: " + this.arme
                             + "\nshield: " + bouclier

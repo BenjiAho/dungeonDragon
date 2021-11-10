@@ -2,21 +2,21 @@ package main;
 
 import java.util.Scanner;
 
-public class Magicien {
+public class Magicien extends Personnage{
     //3constructeurs sans paramètres, avec nom et avec nom/image/niveau de vie/force d'attaque
     private String nomPerso;
-    private int lifeLvl;
+    private int life;
     private int atk;
     private Spell spell;
     private String potion;
 
     public String toString() {
-        return nomPerso + ": with " + lifeLvl + " " + "points of life and" + " " + atk + " points of attack. Weapon : "+" "+spell+" "+"with "+potion+"\n__\n";
+        return nomPerso + ": with " + life + " " + "points of life and" + " " + atk + " points of attack. Weapon : "+" "+spell+" "+"with "+potion+"\n__\n";
     }
 
-    public Magicien(String nomPerso, int lifeLvl, int atk, String spell, String potion) {
+    public Magicien(String nomPerso, int life, int atk, String spell, String potion) {
         this.nomPerso = nomPerso;
-        this.lifeLvl = lifeLvl;
+        this.life = life;
         this.atk = atk;
         this.spell = new Spell(spell);
         this.potion = potion;
@@ -35,9 +35,7 @@ public class Magicien {
         return nomPerso;
     }
 
-    public void setNomPerso(String nomPerso) {
-        this.nomPerso = nomPerso;
-    }
+
 
 
     public String getPotion() {
@@ -49,20 +47,14 @@ public class Magicien {
     }
 
     public int getLifeLvl() {
-        return lifeLvl;
+        return life;
     }
 
-    public void setLifeLvl(int lifeLvl) {
-        this.lifeLvl = lifeLvl;
-    }
 
     public int getAtk() {
         return atk;
     }
 
-    public void setAtk(int atk) {
-        this.atk = atk;
-    }
 
     public void selectionWizard() {
         //Reading values from user
@@ -75,7 +67,7 @@ public class Magicien {
         while (condition) {
             System.out.println("___________________________"
                     + "\nHero's name: " + nomPerso +
-                    "\nLife points: " + lifeLvl
+                    "\nLife points: " + life
                     + "\natk points: " + atk
                     + "\nspell: " + spell
                     + "\npotion: " + potion);
@@ -88,24 +80,46 @@ public class Magicien {
             switch (wizardChoices.toUpperCase()) {
 
                 case "A":
-                    System.out.println("set LifeLvl");
-                    int lifeLvl = sc.nextInt();
-                    this.setLifeLvl(lifeLvl);
+                    boolean validLife = false;
+                    do{
+                        System.out.println("enter life between 3 and 6");
+                        int life = sc.nextInt();
+                        if(life >= 3 && life <= 6){
+                            this.setLifeLvl(life);
+                            validLife = true;
+                        }else{
+                            System.out.println("enter valid value *");
+                        }
+
+                    }while(!validLife);
+
                     System.out.println("___________________________"
                             + "\nHero's name: " + nomPerso +
-                            "\nLife points: " + lifeLvl
+                            "\nLife points: " + life
                             + "\natk points: " + atk
                             + "\nspell: " + spell
                             + "\npotion: " + potion
                             + "\n___________________________");
                     break;
                 case "B":
+                    boolean validAtk = false;
+                    do{
+                        System.out.println("enter atk between 8 and 15");
+                        int atk = sc.nextInt();
+                        if(atk >= 8 && atk <= 15){
+                            this.setLifeLvl(atk);
+                            validAtk = true;
+                        }else{
+                            System.out.println("enter valid value *");
+                        }
+                    }
+                    while (!validAtk);
                     System.out.println("set ATK points");
-                    int atk = sc.nextInt();
+
                     this.setAtk(atk);
                     System.out.println("___________________________"
                             + "\nHero's name: " + nomPerso
-                            + "\nLife points: " + this.lifeLvl
+                            + "\nLife points: " + this.life
                             + "\natk points: " + atk
                             + "\nspell: " + spell
                             + "\npotion: " + potion
@@ -116,7 +130,7 @@ public class Magicien {
                     String spells = sc.next();
                     System.out.println("___________________________"
                             + "\nHero's name: " + nomPerso
-                            + "\nLife points: " + this.lifeLvl
+                            + "\nLife points: " + this.life
                             + "\natk points: " + this.atk
                             + "\nspell: " + spells
                             + "\npotion: " + potion
@@ -129,7 +143,7 @@ public class Magicien {
                     this.setPotion(potion);
                     System.out.println("___________________________"
                             + "\nHero's name: " + nomPerso
-                            + "\nLife points: " + this.lifeLvl
+                            + "\nLife points: " + this.life
                             + "\natk points: " + this.atk
                             + "\nspell: " + this.spell
                             + "\npotion: " + potion
