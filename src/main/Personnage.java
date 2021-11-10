@@ -1,10 +1,25 @@
 package main;
 
+import java.util.Scanner;
+
 public class Personnage {
+
     protected String nomPerso;
     protected int life;
     protected int atk;
 
+//GETTERS
+    public String getNomPerso() {
+        return nomPerso;
+    }
+    public int getLife() {
+        return life;
+    }
+    public int getAtk() {
+        return atk;
+    }
+
+//    SETTERS
     public void setNomPerso(String nomPerso) {
         this.nomPerso = nomPerso;
     }
@@ -14,4 +29,6 @@ public class Personnage {
     public void setAtk(int atk) {
         this.atk = atk;
     }
+
+
 }

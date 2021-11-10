@@ -3,6 +3,23 @@ package main;
 import java.util.*;
 
 public class Guerrier extends Personnage {
+
+
+    public String getBouclier() {
+        return bouclier;
+    }
+    public void setBouclier(String bouclier) {
+        this.bouclier = bouclier;
+    }
+
+
+    public Arme getArme() {
+        return arme;
+    }
+    public void setArme(Arme arme) {
+        this.arme = arme;
+    }
+
     //3constructeurs sans paramètres, avec nom et avec nom/image/niveau de vie/force d'attaque
     private String bouclier;
     private Arme arme;
@@ -26,134 +43,108 @@ public class Guerrier extends Personnage {
     }
 
 
-    public String getNomPerso() {
-        return nomPerso;
-    }
 
-
-
-
-    public String getbouclier() {
-        return bouclier;
-    }
-
-    public void setBouclier(String bouclier) {
-        this.bouclier = bouclier;
-    }
-
-    public int getLifeLvl() {
-        return life;
-    }
-
-
-
-    public int getAtk() {
-        return atk;
-    }
-
-
-
-    public void selectionWarrior() {
-        //Reading values from user
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter name of the warrior: ");
-
-        //Calling the setter and getter methods
-        String newNomPerso = sc.nextLine();
-        if (!newNomPerso.equals("")) {
-            this.setNomPerso(newNomPerso);
-        }
-
-        boolean condition = true;
-        while (condition) {
-            System.out.println("___________________________"
-                    + "\nHero's name: " + nomPerso +
-                    "\nLife points: " + life
-                    + "\natk points: " + atk
-                    + "\nweapon: " + arme
-                    + "\nshield: " + bouclier);
-
-            System.out.println("Change hero attributes: \nA for life points\nB for atk points\nC for weapon" + "\nD for shield" + "\nX exit menu" + "\n___________________________");
-            String warriorChoices = sc.next();
-
-
-            switch (warriorChoices.toUpperCase()) {
-
-                case "A":
-                    boolean validLife = false;
-                    do{
-                        System.out.println("enter life between 5 and 10");
-                        int life = sc.nextInt();
-                        if(life >= 5 && life <= 10){
-                            this.setLifeLvl(life);
-                            validLife = true;
-                        }else{
-                            System.out.println("enter valid value *");
-                        }
-                    }while(!validLife);
-                    System.out.println("___________________________"
-                            + "\nHero's name: " + nomPerso +
-                            "\nLife points: " + life
-                            + "\natk points: " + atk
-                            + "\nweapon: " + arme
-                            + "\nshield: " + bouclier
-                            + "\n___________________________");
-                    break;
-                case "B":
-                    boolean validAtk = false;
-                    do{
-                        System.out.println("enter atk between 5 and 10");
-                        int atk = sc.nextInt();
-                        if(atk >= 5 && atk <= 10){
-                            this.setLifeLvl(atk);
-                            validAtk = true;
-                        }else{
-                            System.out.println("enter valid value *");
-                        }
-                    }
-                    while (!validAtk);
-                    System.out.println("___________________________"
-                            + "\nHero's name: " + nomPerso
-                            + "\nLife points: " + this.life
-                            + "\natk points: " + atk
-                            + "\nweapon: " + arme
-                            + "\nshield: " + bouclier
-                            + "\n___________________________");
-                    break;
-                case "C":
-                    System.out.println("set weapon: ");
-                    String armes = sc.next();
-                    System.out.println("___________________________"
-                            + "\nHero's name: " + nomPerso
-                            + "\nLife points: " + this.life
-                            + "\natk points: " + this.atk
-                            + "\nweapon: " + armes
-                            + "\nshield: " + bouclier
-                            + "\n___________________________");
-                    this.arme = new Arme(armes);
-                    break;
-                case "D":
-                    System.out.println("set Shield: ");
-                    String bouclier = sc.next();
-                    this.setBouclier(bouclier);
-                    System.out.println("___________________________"
-                            + "\nHero's name: " + nomPerso
-                            + "\nLife points: " + this.life
-                            + "\natk points: " + this.atk
-                            + "\nweapon: " + this.arme
-                            + "\nshield: " + bouclier
-                            + "\n___________________________");
-                    break;
-                case "F":
-                    System.out.println("End of game");
-                    break;
-                case "X":
-                    System.out.println("Back to menu");
-                    condition = false;
-                    break;
-            }
-        }
-    }
+//    public void selectionWarrior() {
+//        //Reading values from user
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Enter name of the warrior: ");
+//
+//        //Calling the setter and getter methods
+//        String newNomPerso = sc.nextLine();
+//        if (!newNomPerso.equals("")) {
+//            this.setNomPerso(newNomPerso);
+//        }
+//
+//        boolean condition = true;
+//        while (condition) {
+//            System.out.println("___________________________"
+//                    + "\nHero's name: " + nomPerso +
+//                    "\nLife points: " + life
+//                    + "\natk points: " + atk
+//                    + "\nweapon: " + arme
+//                    + "\nshield: " + bouclier);
+//
+//            System.out.println("Change hero attributes: \nA for life points\nB for atk points\nC for weapon" + "\nD for shield" + "\nX exit menu" + "\n___________________________");
+//            String warriorChoices = sc.next();
+//
+//
+//            switch (warriorChoices.toUpperCase()) {
+//
+//                case "A":
+//                    boolean validLife = false;
+//                    do{
+//                        System.out.println("enter life between 5 and 10");
+//                        int life = sc.nextInt();
+//                        if(life >= 5 && life <= 10){
+//                            this.setLifeLvl(life);
+//                            validLife = true;
+//                        }else{
+//                            System.out.println("enter valid value *");
+//                        }
+//                    }while(!validLife);
+//                    System.out.println("___________________________"
+//                            + "\nHero's name: " + nomPerso +
+//                            "\nLife points: " + life
+//                            + "\natk points: " + atk
+//                            + "\nweapon: " + arme
+//                            + "\nshield: " + bouclier
+//                            + "\n___________________________");
+//                    break;
+//                case "B":
+//                    boolean validAtk = false;
+//                    do{
+//                        System.out.println("enter atk between 5 and 10");
+//                        int atk = sc.nextInt();
+//                        if(atk >= 5 && atk <= 10){
+//                            this.setLifeLvl(atk);
+//                            validAtk = true;
+//                        }else{
+//                            System.out.println("enter valid value *");
+//                        }
+//                    }
+//                    while (!validAtk);
+//                    System.out.println("___________________________"
+//                            + "\nHero's name: " + nomPerso
+//                            + "\nLife points: " + this.life
+//                            + "\natk points: " + atk
+//                            + "\nweapon: " + arme
+//                            + "\nshield: " + bouclier
+//                            + "\n___________________________");
+//                    break;
+//                case "C":
+//                    System.out.println("set weapon: ");
+//                    String armes = sc.next();
+//                    System.out.println("___________________________"
+//                            + "\nHero's name: " + nomPerso
+//                            + "\nLife points: " + this.life
+//                            + "\natk points: " + this.atk
+//                            + "\nweapon: " + armes
+//                            + "\nshield: " + bouclier
+//                            + "\n___________________________");
+//                    this.arme = new Arme(armes);
+//                    break;
+//                case "D":
+//                    System.out.println("set Shield: ");
+//                    String bouclier = sc.next();
+//                    this.setBouclier(bouclier);
+//                    System.out.println("___________________________"
+//                            + "\nHero's name: " + nomPerso
+//                            + "\nLife points: " + this.life
+//                            + "\natk points: " + this.atk
+//                            + "\nweapon: " + this.arme
+//                            + "\nshield: " + bouclier
+//                            + "\n___________________________");
+//                    break;
+//                case "F":
+//                    System.out.println("End of game");
+//                    break;
+//                case "X":
+//                    System.out.println("Back to menu");
+//                    condition = false;
+//                    break;
+//            }
+//        }
+//    }
 }
 
 

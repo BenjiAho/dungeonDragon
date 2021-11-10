@@ -43,8 +43,11 @@ public class Menu {
     public void selectHero() {
         ArrayList<Guerrier> warriors = new ArrayList<Guerrier>();
         ArrayList<Magicien> mages = new ArrayList<Magicien>();
+
+
         boolean selectCondition = true;
         while (selectCondition) {
+            Personnage perso;
             Scanner scanner = new Scanner(System.in);
             System.out.println("Game Menu : \n" + " 1-Create hero\n" + " 2-Show Heroes List\n" + " 3-Start Game\n 4-End Game\n");
             int selector = scanner.nextInt();
@@ -57,17 +60,16 @@ public class Menu {
                         case 1:
                             System.out.println("Warrior selected");
 
-                            Guerrier warrior = new Guerrier();
-                            warrior.selectionWarrior();
-                            warriors.add(warrior);
+                            perso = new Guerrier();
 
+                            warriors.add((Guerrier)perso);
+                            selectionPersonnage(perso, true);
                             break;
                         case 2:
                             System.out.println("Wizard selected");
-                            Magicien wizard = new Magicien();
-                            wizard.selectionWizard();
-                            mages.add(wizard);
-
+                            perso = new Magicien();
+                            mages.add((Magicien)perso);
+                            selectionPersonnage(perso, false);
                             break;
                         case 3:
                             System.out.println(warriors);
@@ -95,4 +97,115 @@ public class Menu {
 
         }
     }
+
+    public void selectionPersonnage(Personnage perso, boolean isWarrior) {
+        //Reading values from user
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter name of the warrior: ");
+
+        //Calling the setter and getter methods
+        String newNomPerso = sc.nextLine();
+        if (!newNomPerso.equals("")) {
+            perso.setNomPerso(newNomPerso);
+        }
+
+        boolean condition = true;
+        while (condition) {
+            System.out.println("___________________________"
+                    + "\nHero's name: " + perso.nomPerso +
+                    "\nLife points: " + perso.life
+                    + "\natk points: " + perso.atk
+                    + ((isWarrior)
+                    ? "\nweapon: " + ((Guerrier)perso).getArme() +  "\nshield: " + ((Guerrier)perso).getBouclier()
+                    : "\nspell: " + ((Magicien)perso).getSpell() +  "\npotion: " + ((Magicien)perso).getPotion()));
+
+//                    + "\nweapon: " + ((isWarrior) ? ((Guerrier)perso).getArme() : ((Magicien)perso).getSpell())
+//                    + "\nshield: " + ((isWarrior) ? ((Guerrier)perso).getBouclier() : ((Magicien)perso).getPotion()));
+
+            System.out.println("Change hero attributes: \nA for life points\nB for atk points\nC for weapon" + "\nD for shield" + "\nX exit menu" + "\n___________________________");
+            String warriorChoices = sc.next();
+
+
+            switch (warriorChoices.toUpperCase()) {
+
+                case "A":
+                    boolean validLife = false;
+                    do{
+                        System.out.println("enter life between 5 and 10");
+                        int life = sc.nextInt();
+                        if(life >= 5 && life <= 10){
+                            perso.setLifeLvl(life);
+                            validLife = true;
+                        }else{
+                            System.out.println("enter valid value *");
+                        }
+                    }while(!validLife);
+                    System.out.println("___________________________"
+                            + "\nHero's name: " + perso.nomPerso +
+                            "\nLife points: " + perso.life
+                            + "\natk points: " + perso.atk
+                            + ((isWarrior)
+                            ? "\nweapon: " + ((Guerrier)perso).getArme() +  "\nshield: " + ((Guerrier)perso).getBouclier()
+                            : "\nspell: " + ((Magicien)perso).getSpell() +  "\npotion: " + ((Magicien)perso).getPotion())
+                            + "\n___________________________");
+                    break;
+                case "B":
+                    boolean validAtk = false;
+                    do{
+                        System.out.println("enter atk between 5 and 10");
+                        int atk = sc.nextInt();
+                        if(atk >= 5 && atk <= 10){
+                            perso.setLifeLvl(atk);
+                            validAtk = true;
+                        }else{
+                            System.out.println("enter valid value *");
+                        }
+                    }
+                    while (!validAtk);
+                    System.out.println("___________________________"
+                            + "\nHero's name: " + perso.nomPerso +
+                            "\nLife points: " + perso.life
+                            + "\natk points: " + perso.atk
+                            + ((isWarrior)
+                            ? "\nweapon: " + ((Guerrier)perso).getArme() +  "\nshield: " + ((Guerrier)perso).getBouclier()
+                            : "\nspell: " + ((Magicien)perso).getSpell() +  "\npotion: " + ((Magicien)perso).getPotion())
+                            + "\n___________________________");
+                    break;
+                case "C":
+                    System.out.println("set weapon: ");
+                    String armes = sc.next();
+                    System.out.println("___________________________"
+                            + "\nHero's name: " + perso.nomPerso +
+                            "\nLife points: " + perso.life
+                            + "\natk points: " + perso.atk
+                            + ((isWarrior)
+                            ? "\nweapon: " + ((Guerrier)perso).getArme() +  "\nshield: " + ((Guerrier)perso).getBouclier()
+                            : "\nspell: " + ((Magicien)perso).getSpell() +  "\npotion: " + ((Magicien)perso).getPotion())
+                            + "\n___________________________");
+                    ((Guerrier)perso).setArme(new Arme(armes));
+                    break;
+                case "D":
+                    System.out.println("set Shield: ");
+                    String bouclier = sc.next();
+                    ((Guerrier)perso).setBouclier(bouclier);
+                    System.out.println("___________________________"
+                            + "\nHero's name: " + perso.nomPerso
+                            + "\nLife points: " + perso.life
+                            + "\natk points: " + perso.atk
+                            + "\nweapon: " + ((Guerrier)perso).getArme()
+                            + "\nshield: " + ((Guerrier)perso).getBouclier()
+                            + "\n___________________________");
+                    break;
+                case "F":
+                    System.out.println("End of game");
+                    break;
+                case "X":
+                    System.out.println("Back to menu");
+                    condition = false;
+                    break;
+            }
+        }
+    }
+
+
 }
