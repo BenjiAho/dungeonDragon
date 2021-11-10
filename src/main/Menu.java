@@ -101,7 +101,7 @@ public class Menu {
     public void selectionPersonnage(Personnage perso, boolean isWarrior) {
         //Reading values from user
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter name of the warrior: ");
+        System.out.println( ((isWarrior)? "Enter name of the warrior: " : "Enter name of the wizard: "));
 
         //Calling the setter and getter methods
         String newNomPerso = sc.nextLine();
@@ -122,18 +122,18 @@ public class Menu {
 //                    + "\nweapon: " + ((isWarrior) ? ((Guerrier)perso).getArme() : ((Magicien)perso).getSpell())
 //                    + "\nshield: " + ((isWarrior) ? ((Guerrier)perso).getBouclier() : ((Magicien)perso).getPotion()));
 
-            System.out.println("Change hero attributes: \nA for life points\nB for atk points\nC for weapon" + "\nD for shield" + "\nX exit menu" + "\n___________________________");
-            String warriorChoices = sc.next();
+            System.out.println("Change hero attributes: \nA for life points\nB for atk points"+ ((isWarrior)? "\nC for weapon" + "\nD for shield" :  "\nC for spell" + "\nD for potion") + "\nX exit menu" + "\n___________________________");
+            String heroChoices = sc.next();
 
 
-            switch (warriorChoices.toUpperCase()) {
+            switch (heroChoices.toUpperCase()) {
 
                 case "A":
                     boolean validLife = false;
                     do{
-                        System.out.println("enter life between 5 and 10");
+                        System.out.println( ((isWarrior)?"enter life between 5 and 10": "enter life between 3 and 6"));
                         int life = sc.nextInt();
-                        if(life >= 5 && life <= 10){
+                        if( ((isWarrior)? life >= 5 && life <= 10 :life >= 3 && life <= 6 )){
                             perso.setLifeLvl(life);
                             validLife = true;
                         }else{
@@ -152,9 +152,9 @@ public class Menu {
                 case "B":
                     boolean validAtk = false;
                     do{
-                        System.out.println("enter atk between 5 and 10");
+                        System.out.println( ((isWarrior)?"enter atk between 5 and 10": "enter atk between 8 and 15"));
                         int atk = sc.nextInt();
-                        if(atk >= 5 && atk <= 10){
+                        if( ((isWarrior)? atk >= 5 && atk <= 10 :atk >= 8 && atk <= 15 )){
                             perso.setLifeLvl(atk);
                             validAtk = true;
                         }else{
@@ -173,7 +173,7 @@ public class Menu {
                     break;
                 case "C":
                     System.out.println("set weapon: ");
-                    String armes = sc.next();
+                    ((isWarrior)? String armes = sc.next():  String spells = sc.next());
                     System.out.println("___________________________"
                             + "\nHero's name: " + perso.nomPerso +
                             "\nLife points: " + perso.life
@@ -182,7 +182,7 @@ public class Menu {
                             ? "\nweapon: " + ((Guerrier)perso).getArme() +  "\nshield: " + ((Guerrier)perso).getBouclier()
                             : "\nspell: " + ((Magicien)perso).getSpell() +  "\npotion: " + ((Magicien)perso).getPotion())
                             + "\n___________________________");
-                    ((Guerrier)perso).setArme(new Arme(armes));
+                    ((isWarrior)?((Guerrier)perso).setArme(new Arme(armes)): ((Magicien)perso).setSpell(new Spell(spells)));
                     break;
                 case "D":
                     System.out.println("set Shield: ");
