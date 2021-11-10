@@ -10,35 +10,31 @@ public class Menu {
         data.selectHero();
     }
 
-//    public void plateau() {
+    //    public void plateau() {
 //        int num[] = new int[64];
 //        for (int i = 0; i < (num.length); i++) {
 //            num[i]=i+1;
 //            System.out.println(num[i]);
 //        }
 //    }
-public static final int mapSize = 64;
-    public static  int rollDice(int number, int nSides)
-    {
+    public static final int mapSize = 64;
+
+    public static int rollDice(int number, int nSides) {
         int position = 1;
         int roll = 0;
 //        int i = 1;
-        Random  r = new Random();
-        if(nSides >=3)
-        {
-            do
-            {
-                roll = r.nextInt(nSides)+1;
-                System.out.println("Roll is:  "+roll);
+        Random r = new Random();
+        if (nSides >= 3) {
+            do {
+                roll = r.nextInt(nSides) + 1;
+                System.out.println("Roll is:  " + roll);
                 position = position + roll;
-                System.out.println("position actuelle: "+position+ "/64");
-                if(position > mapSize){
+                System.out.println("position actuelle: " + position + "/64");
+                if (position > mapSize) {
                     position = mapSize;
                 }
-            }while(position < mapSize);
-        }
-        else
-        {
+            } while (position < mapSize);
+        } else {
             System.out.println("Error position needs to be from 3");
         }
         return position;
@@ -50,7 +46,7 @@ public static final int mapSize = 64;
         boolean selectCondition = true;
         while (selectCondition) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Créer un personnage? : \n" + " 1-Yes\n" + " 2-No\n" + " 3-Show Heroes List\n 4-START GAME\n");
+            System.out.println("Game Menu : \n" + " 1-Create hero\n" + " 2-Show Heroes List\n" + " 3-Start Game\n 4-End Game\n");
             int selector = scanner.nextInt();
             switch (selector) {
                 case 1:
@@ -85,15 +81,16 @@ public static final int mapSize = 64;
                     }
                     break;
                 case 2:
-                    selectCondition = false;
-                    break;
-                case 3:
                     System.out.println("Warriors List: \n" + warriors + "\nMages List: \n" + mages);
                     break;
-                case 4:
-//                    plateau();
-                    System.out.println("Position finale sur plateau: "+rollDice(1, 6));
+                case 3:
+//                plateau();
+                    System.out.println("Position finale sur plateau: " + rollDice(1, 6));
                     break;
+                case 4:
+                    selectCondition = false;
+                    break;
+//
             }
 
         }

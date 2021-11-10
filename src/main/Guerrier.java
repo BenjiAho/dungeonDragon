@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Guerrier extends Personnage {
     //3constructeurs sans paramètres, avec nom et avec nom/image/niveau de vie/force d'attaque
-
     private String bouclier;
     private Arme arme;
 
@@ -21,9 +20,6 @@ public class Guerrier extends Personnage {
         this.bouclier = bouclier;
     }
 
-    public Guerrier(String nomPerso) {
-        this(nomPerso, 5, 5, "massue de ses morts! ", "Bouclier de son grand mort! ");
-    }
 
     public Guerrier() {
         this("Garrosh", 10, 10, "hâche de ses morts! ", "Bouclier en tête de bouc! ");
@@ -61,9 +57,13 @@ public class Guerrier extends Personnage {
         //Reading values from user
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter name of the warrior: ");
-        String nomPerso = sc.nextLine();
+
         //Calling the setter and getter methods
-        this.setNomPerso(nomPerso);
+        String newNomPerso = sc.nextLine();
+        if (!newNomPerso.equals("")) {
+            this.setNomPerso(newNomPerso);
+        }
+
         boolean condition = true;
         while (condition) {
             System.out.println("___________________________"

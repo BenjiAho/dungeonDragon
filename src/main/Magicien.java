@@ -1,17 +1,16 @@
 package main;
 
+import java.util.Objects;
 import java.util.Scanner;
 
-public class Magicien extends Personnage{
+public class Magicien extends Personnage {
     //3constructeurs sans paramètres, avec nom et avec nom/image/niveau de vie/force d'attaque
-    private String nomPerso;
-    private int life;
-    private int atk;
+
     private Spell spell;
     private String potion;
 
     public String toString() {
-        return nomPerso + ": with " + life + " " + "points of life and" + " " + atk + " points of attack. Weapon : "+" "+spell+" "+"with "+potion+"\n__\n";
+        return nomPerso + ": with " + life + " " + "points of life and" + " " + atk + " points of attack. Weapon : " + " " + spell + " " + "with " + potion + "\n__\n";
     }
 
     public Magicien(String nomPerso, int life, int atk, String spell, String potion) {
@@ -22,9 +21,6 @@ public class Magicien extends Personnage{
         this.potion = potion;
     }
 
-    public Magicien(String nomPerso) {
-        this(nomPerso, 5, 5, "! ", "Potion de son grand mort! ");
-    }
 
     public Magicien() {
         this("GLANDALF", 6, 15, "Avacadabra", "Viagra Potion");
@@ -34,8 +30,6 @@ public class Magicien extends Personnage{
     public String getNomPerso() {
         return nomPerso;
     }
-
-
 
 
     public String getPotion() {
@@ -59,10 +53,15 @@ public class Magicien extends Personnage{
     public void selectionWizard() {
         //Reading values from user
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter name of the warrior: ");
-        String nomPerso = sc.nextLine();
+        System.out.println("Enter name of the wizard: ");
+
+        String newNomPerso = sc.nextLine();
+        if (!newNomPerso.equals("")) {
+            this.setNomPerso(newNomPerso);
+        }
+
         //Calling the setter and getter methods
-        this.setNomPerso(nomPerso);
+
         boolean condition = true;
         while (condition) {
             System.out.println("___________________________"
@@ -72,26 +71,25 @@ public class Magicien extends Personnage{
                     + "\nspell: " + spell
                     + "\npotion: " + potion);
 
-            System.out.println("Change hero attributes: \nA for life points\nB for atk points\nC for spell" + "\nD for potion"+ "\nX exit menu" + "\n___________________________");
+            System.out.println("Change hero attributes: \nA for life points\nB for atk points\nC for spell" + "\nD for potion" + "\nX exit menu" + "\n___________________________");
             String wizardChoices = sc.next();
-
 
 
             switch (wizardChoices.toUpperCase()) {
 
                 case "A":
                     boolean validLife = false;
-                    do{
+                    do {
                         System.out.println("enter life between 3 and 6");
                         int life = sc.nextInt();
-                        if(life >= 3 && life <= 6){
+                        if (life >= 3 && life <= 6) {
                             this.setLifeLvl(life);
                             validLife = true;
-                        }else{
+                        } else {
                             System.out.println("enter valid value *");
                         }
 
-                    }while(!validLife);
+                    } while (!validLife);
 
                     System.out.println("___________________________"
                             + "\nHero's name: " + nomPerso +
@@ -103,13 +101,13 @@ public class Magicien extends Personnage{
                     break;
                 case "B":
                     boolean validAtk = false;
-                    do{
+                    do {
                         System.out.println("enter atk between 8 and 15");
                         int atk = sc.nextInt();
-                        if(atk >= 8 && atk <= 15){
+                        if (atk >= 8 && atk <= 15) {
                             this.setLifeLvl(atk);
                             validAtk = true;
-                        }else{
+                        } else {
                             System.out.println("enter valid value *");
                         }
                     }
