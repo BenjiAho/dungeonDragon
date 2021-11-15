@@ -10,7 +10,7 @@ public class Magicien extends Personnage {
     private String potion;
 
     public String toString() {
-        return nomPerso + ": with " + life + " " + "points of life and" + " " + atk + " points of attack. Weapon : " + " " + spell + " " + "with " + potion + "\n__\n";
+        return nomPerso + ": with " + life + " " + "life points and" + " " + atk + " atk points. Spell : " + " " + spell + " " + "with " + potion + "\n__\n";
     }
 
     public Magicien(String nomPerso, int life, int atk, String spell, String potion) {

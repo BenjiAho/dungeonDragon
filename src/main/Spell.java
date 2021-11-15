@@ -7,7 +7,7 @@ public class Spell {
         this.spell = spell;
     }
 
-    public String toString(){
+    public String toString() {
         return spell;
     }
 }

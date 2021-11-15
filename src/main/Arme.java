@@ -7,7 +7,7 @@ public class Arme {
         this.arme = arme;
     }
 
-    public String toString(){
+    public String toString() {
         return arme;
     }
 }
