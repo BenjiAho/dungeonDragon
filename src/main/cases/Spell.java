@@ -1,6 +1,6 @@
 package main.cases;
 
-public class Spell {
+public class Spell extends Case {
     private String spell;
 
     public Spell(String spell) {

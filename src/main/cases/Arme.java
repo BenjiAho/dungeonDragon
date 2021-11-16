@@ -10,4 +10,5 @@ public class Arme extends Case {
     public String toString() {
         return arme;
     }
+
 }

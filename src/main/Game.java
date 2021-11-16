@@ -1,7 +1,6 @@
 package main;
 
-import main.cases.Arme;
-import main.cases.Case;
+import main.cases.*;
 import main.personnages.Personnage;
 
 import java.util.*;
@@ -12,10 +11,27 @@ public class Game {
     private final Scanner scanner = new Scanner(System.in);
 
     public void getPlateau(){
-        for (int i = 0; i < 64; i++) {
-            plateau.add(null);
+        for (int i = 1; i < 64; i++) {
+            plateau.add(new EmptyCase());
         }
-        plateau.set(1,new Arme("truc"));
+        plateau.set(0,new StartCase());
+        plateau.set(2,new Spell("perlinpinpin powder"));
+        plateau.set(3,new Arme("dildo"));
+        plateau.set(4,new Spell("ignite"));
+        plateau.set(5,new Arme("katana"));
+        plateau.set(6,new Bouclier("belt"));
+        plateau.set(7,new Potion("celerity potion"));
+        plateau.set(8,new Ennemi("rocco"));
+        plateau.set(9,new Spell("maximus"));
+        plateau.set(10,new Bouclier("trash can cover"));
+        plateau.set(11,new Ennemi("pika-pas-chou"));
+        plateau.set(12,new Spell("lili-putain"));
+        plateau.set(13,new Arme("little spoon"));
+        plateau.set(14,new Ennemi("tartare-man"));
+        plateau.set(15,new Potion("rage potion"));
+        plateau.set(16,new Ennemi("tartare-man"));
+        plateau.set(17,new Spell("lighting"));
+        plateau.set(18,new Arme("little spoon"));
         System.out.println(plateau);
         System.out.println("Taille du plateau :" + plateau.size());
     }
@@ -45,7 +61,7 @@ public class Game {
 
 
 
-                System.out.println(hero.getNomPerso() + position + "/64 \n ______");
+                System.out.println(hero.getNomPerso() +" is on the case :  "+ position + "/64\n he gets "+ plateau.get(position) + " \n ______");
                 if (continu) {
                     position += (Math.random() * 6) + 1;
                 }

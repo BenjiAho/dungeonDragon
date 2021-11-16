@@ -1,6 +1,6 @@
 package main.cases;
 
-public class Bouclier {
+public class Bouclier extends Case {
     private final String bouclier;
 
     public Bouclier(String bouclier) {
