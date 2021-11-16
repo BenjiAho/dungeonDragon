@@ -9,7 +9,6 @@ import java.util.*;
 
 public class Game {
     private final ArrayList<Case> plateau = new ArrayList<>();
-    private int positionHero = 1;
     private final Scanner scanner = new Scanner(System.in);
 
     public void getPlateau(){
