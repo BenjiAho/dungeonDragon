@@ -1,7 +1,7 @@
-package main;
+package main.cases;
 
-public class Arme {
-    private String arme;
+public class Arme extends Case {
+    private final String arme;
 
     public Arme(String arme) {
         this.arme = arme;

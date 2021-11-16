@@ -1,4 +1,4 @@
-package main;
+package main.personnages;
 
 import java.util.Scanner;
 

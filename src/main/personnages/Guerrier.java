@@ -1,14 +1,15 @@
-package main;
+package main.personnages;
 
-import java.util.*;
+import main.cases.Arme;
+import main.cases.Bouclier;
 
 public class Guerrier extends Personnage {
 
 
-    public String getBouclier() {
+    public Bouclier getBouclier() {
         return bouclier;
     }
-    public void setBouclier(String bouclier) {
+    public void setBouclier(Bouclier bouclier) {
         this.bouclier = bouclier;
     }
 
@@ -21,7 +22,7 @@ public class Guerrier extends Personnage {
     }
 
     //3constructeurs sans paramètres, avec nom et avec nom/image/niveau de vie/force d'attaque
-    private String bouclier;
+    private Bouclier bouclier;
     private Arme arme;
 
 
@@ -34,7 +35,7 @@ public class Guerrier extends Personnage {
         this.life = life;
         this.atk = atk;
         this.arme = new Arme(arme);
-        this.bouclier = bouclier;
+        this.bouclier = new Bouclier(bouclier);
     }
 
 

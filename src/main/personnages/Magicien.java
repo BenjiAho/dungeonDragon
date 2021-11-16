@@ -1,13 +1,13 @@
-package main;
+package main.personnages;
 
-import java.util.Objects;
-import java.util.Scanner;
+import main.cases.Potion;
+import main.cases.Spell;
 
 public class Magicien extends Personnage {
     //3constructeurs sans paramètres, avec nom et avec nom/image/niveau de vie/force d'attaque
 
     private Spell spell;
-    private String potion;
+    private Potion potion;
 
     public String toString() {
         return nomPerso + ": with " + life + " " + "life points and" + " " + atk + " atk points. Spell : " + " " + spell + " " + "with " + potion + "\n__\n";
@@ -18,7 +18,7 @@ public class Magicien extends Personnage {
         this.life = life;
         this.atk = atk;
         this.spell = new Spell(spell);
-        this.potion = potion;
+        this.potion = new Potion(potion);
     }
 
 
@@ -35,10 +35,10 @@ public class Magicien extends Personnage {
         this.spell = spell;
     }
 
-    public String getPotion() {
+    public Potion getPotion() {
         return potion;
     }
-    public void setPotion(String potion) {
+    public void setPotion(Potion potion) {
         this.potion = potion;
     }
 

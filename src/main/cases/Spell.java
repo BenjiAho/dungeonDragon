@@ -1,4 +1,4 @@
-package main;
+package main.cases;
 
 public class Spell {
     private String spell;

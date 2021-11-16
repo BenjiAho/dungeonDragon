@@ -1,28 +1,40 @@
 package main;
 
+import main.cases.Arme;
+import main.cases.Bouclier;
+import main.cases.Potion;
+import main.cases.Spell;
+import main.personnages.Guerrier;
+import main.personnages.Magicien;
+import main.personnages.Personnage;
+
 import java.util.*;
 
 public class Menu {
     public static void main(String[] args) {
-
         System.out.println("Starting game");
         Menu data = new Menu();
         data.mainMenu();
     }
 
-    //    public void plateau() {
-//        int num[] = new int[64];
-//        for (int i = 0; i < (num.length); i++) {
-//            num[i]=i+1;
-//            System.out.println(num[i]);
-//        }
-//    }
+
     private final Scanner scanner = new Scanner(System.in);
     private final ArrayList<Guerrier> warriors = new ArrayList<>();
     private final ArrayList<Magicien> wizards = new ArrayList<>();
     public final int mapSize = 64;
+    private Game game = new Game();
 
 
+//    public void plateau() {
+//        int[] num = new int[64];
+//        for (int i = 0; i < (num.length); i++) {
+//            num[i] = i + 1;
+//            System.out.println(num[i]);
+//        }
+//    }
+
+
+    //    STRING TO INT
     private String getResult(String question) {
         System.out.println(question);
         return scanner.nextLine();
@@ -36,7 +48,8 @@ public class Menu {
         }
     }
 
-//    function to start game
+
+    //    function to start game
     public int startGame() {
 
         Personnage hero = null;
@@ -73,45 +86,11 @@ public class Menu {
                     throw new IllegalStateException("Unexpected value: " + selector2);
             }
         }
-        int nSides = 6;
-        int position = 1;
-        int roll = 0;
 
-//        int i = 1;
-        Random r = new Random();
-        if (nSides >= 3) {
-//            nSides= nombre de faces du dé
-            do {
-                boolean continu = false;
-
-                System.out.println("Roll?\n  1-Yes\n  2-No");
-                int response = scanner.nextInt();
-                switch (response) {
-                    case 1:
-                        continu = true;
-                        break;
-                    case 2:
-                        System.exit(0);
-                        break;
-                }
-
-                roll = r.nextInt(nSides) + 1;
-                System.out.println("Roll is:  " + roll);
-                position = position + roll;
-                System.out.println( hero.getNomPerso() + position + "/64 \n ______");
-                if (continu) {
-                    position += (Math.random() * 6) + 1;
-                }
-
-                if (position > mapSize) {
-                    position = mapSize;
-                }
-            } while (position < mapSize);
-        } else {
-            System.out.println("Error position needs to be from 3");
-        }
-        return position;
+        return game.heroMovements(hero);
     }
+
+
 
 
     public void mainMenu() {
@@ -182,15 +161,15 @@ public class Menu {
         boolean condition = true;
         while (condition) {
             System.out.println("___________________________"
-                    + "\nHero's name: " + perso.nomPerso +
-                    "\nLife points: " + perso.life
-                    + "\natk points: " + perso.atk
+                    + "\nHero's name: " + perso.getNomPerso() +
+                    "\nLife points: " + perso.getLife()
+                    + "\natk points: " + perso.getAtk()
                     + ((isWarrior)
                     ? "\nweapon: " + ((Guerrier) perso).getArme() + "\nshield: " + ((Guerrier) perso).getBouclier()
                     : "\nspell: " + ((Magicien) perso).getSpell() + "\npotion: " + ((Magicien) perso).getPotion()));
 
 
-            int heroChoices = getIntResult("Change hero attributes: \n1 for life points\n2 for atk points" + ((isWarrior) ? "\n3 for weapon" + "\n4 for shield" : "\n5 for spell" + "\n6 for potion") + "\n7 exit menu" + "\n___________________________");
+            int heroChoices = getIntResult("Change hero attributes: \n1 for life points\n2 for atk points" + ((isWarrior) ? "\n3 for weapon" + "\n4 for shield" : "\n3 for spell" + "\n4 for potion") + "\n5 exit menu" + "\n___________________________");
 
             switch (heroChoices) {
 
@@ -206,9 +185,9 @@ public class Menu {
                         }
                     } while (!validLife);
                     System.out.println("___________________________"
-                            + "\nHero's name: " + perso.nomPerso +
-                            "\nLife points: " + perso.life
-                            + "\natk points: " + perso.atk
+                            + "\nHero's name: " + perso.getNomPerso() +
+                            "\nLife points: " + perso.getLife()
+                            + "\natk points: " + perso.getAtk()
                             + ((isWarrior)
                             ? "\nweapon: " + ((Guerrier) perso).getArme() + "\nshield: " + ((Guerrier) perso).getBouclier()
                             : "\nspell: " + ((Magicien) perso).getSpell() + "\npotion: " + ((Magicien) perso).getPotion())
@@ -227,9 +206,9 @@ public class Menu {
                     }
                     while (!validAtk);
                     System.out.println("___________________________"
-                            + "\nHero's name: " + perso.nomPerso +
-                            "\nLife points: " + perso.life
-                            + "\natk points: " + perso.atk
+                            + "\nHero's name: " + perso.getNomPerso() +
+                            "\nLife points: " + perso.getLife()
+                            + "\natk points: " + perso.getAtk()
                             + ((isWarrior)
                             ? "\nweapon: " + ((Guerrier) perso).getArme() + "\nshield: " + ((Guerrier) perso).getBouclier()
                             : "\nspell: " + ((Magicien) perso).getSpell() + "\npotion: " + ((Magicien) perso).getPotion())
@@ -250,9 +229,9 @@ public class Menu {
                     }
 
                     System.out.println("___________________________"
-                            + "\nHero's name: " + perso.nomPerso +
-                            "\nLife points: " + perso.life
-                            + "\natk points: " + perso.atk
+                            + "\nHero's name: " + perso.getNomPerso() +
+                            "\nLife points: " + perso.getLife()
+                            + "\natk points: " + perso.getAtk()
                             + ((isWarrior)
                             ? "\nweapon: " + ((Guerrier) perso).getArme() + "\nshield: " + ((Guerrier) perso).getBouclier()
                             : "\nspell: " + ((Magicien) perso).getSpell() + "\npotion: " + ((Magicien) perso).getPotion())
@@ -264,25 +243,22 @@ public class Menu {
                             : "Set potion: ");
 
                     if (isWarrior) {
-                        String bouclier = sc.next();
-                        ((Guerrier) perso).setBouclier(bouclier);
+                        String boucliers = sc.next();
+                        ((Guerrier) perso).setBouclier(new Bouclier(boucliers));
                     } else {
                         String potion = sc.next();
-                        ((Magicien) perso).setPotion(potion);
+                        ((Magicien) perso).setPotion(new Potion(potion));
                     }
                     System.out.println("___________________________"
-                            + "\nHero's name: " + perso.nomPerso
-                            + "\nLife points: " + perso.life
-                            + "\natk points: " + perso.atk
+                            + "\nHero's name: " + perso.getNomPerso()
+                            + "\nLife points: " + perso.getLife()
+                            + "\natk points: " + perso.getAtk()
                             + ((isWarrior)
                             ? "\nweapon: " + ((Guerrier) perso).getArme() + "\nshield: " + ((Guerrier) perso).getBouclier()
                             : "\nspell: " + ((Magicien) perso).getSpell() + "\npotion: " + ((Magicien) perso).getPotion())
                             + "\n___________________________");
                     break;
                 case 5:
-                    System.out.println("End of game");
-                    break;
-                case 6:
                     System.out.println("Back to menu");
                     condition = false;
                     break;
