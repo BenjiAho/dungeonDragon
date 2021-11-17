@@ -1,12 +1,20 @@
 package main;
 
-import main.cases.Arme;
-import main.cases.Bouclier;
-import main.cases.Potion;
-import main.cases.Spell;
+import main.plateau.Bouclier;
+import main.plateau.Potion;
+import main.plateau.potions.BasicPotion;
+import main.plateau.spells.FireBall;
+import main.plateau.spells.Lightning;
+import main.plateau.spells.Spell;
 import main.personnages.Guerrier;
 import main.personnages.Magicien;
 import main.personnages.Personnage;
+import main.plateau.armes.massues.CrystalMace;
+import main.plateau.armes.massues.IronMace;
+import main.plateau.armes.massues.StoneMace;
+import main.plateau.armes.swords.CrystalSword;
+import main.plateau.armes.swords.IcySword;
+import main.plateau.armes.swords.SteelSword;
 
 import java.util.*;
 
@@ -89,8 +97,6 @@ public class Menu {
 
         return game.heroMovements(hero);
     }
-
-
 
 
     public void mainMenu() {
@@ -216,16 +222,44 @@ public class Menu {
                     break;
                 case 3:
                     System.out.println((isWarrior)
-                            ? "Set weapon: "
-                            : "Set spell: ");
+                            ? "Pick a weapon: \n 1:Ironmace | 2: StoneMace | 3: CrystalSword | 4:SteelSword| 5:IcySword| 6:CrystalMace"
+                            : "1: Lightning | 2: FireBall");
 
 
                     if (isWarrior) {
-                        String armes = sc.next();
-                        ((Guerrier) perso).setArme(new Arme(armes));
+                        int armes = sc.nextInt();
+                        switch (armes) {
+                            case 1:
+                                ((Guerrier) perso).setArme(new IronMace());
+                                break;
+                            case 2:
+                                ((Guerrier) perso).setArme(new StoneMace());
+                                break;
+                            case 3:
+                                ((Guerrier) perso).setArme(new CrystalSword());
+                                break;
+                            case 4:
+                                ((Guerrier) perso).setArme(new SteelSword());
+                                break;
+                            case 5:
+                                ((Guerrier) perso).setArme(new IcySword());
+                                break;
+                            case 6:
+                                ((Guerrier) perso).setArme(new CrystalMace());
+                                break;
+                        }
+
                     } else {
-                        String spells = sc.next();
-                        ((Magicien) perso).setSpell(new Spell(spells));
+                        int spells = sc.nextInt();
+
+                        switch (spells) {
+                            case 1:
+                                ((Magicien) perso).setSpell(new Lightning());
+                                break;
+                            case 2:
+                                ((Magicien) perso).setSpell(new FireBall());
+                                break;
+                        }
                     }
 
                     System.out.println("___________________________"
@@ -246,8 +280,8 @@ public class Menu {
                         String boucliers = sc.next();
                         ((Guerrier) perso).setBouclier(new Bouclier(boucliers));
                     } else {
-                        String potion = sc.next();
-                        ((Magicien) perso).setPotion(new Potion(potion));
+
+                        ((Magicien) perso).setPotion(new BasicPotion());
                     }
                     System.out.println("___________________________"
                             + "\nHero's name: " + perso.getNomPerso()

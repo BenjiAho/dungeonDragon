@@ -2,7 +2,7 @@ package main.personnages;
 
 import java.util.Scanner;
 
-public class Personnage {
+abstract public class Personnage {
 
     protected String nomPerso;
     protected int life;

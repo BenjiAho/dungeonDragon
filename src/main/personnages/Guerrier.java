@@ -1,7 +1,8 @@
 package main.personnages;
 
-import main.cases.Arme;
-import main.cases.Bouclier;
+import main.plateau.armes.Arme;
+import main.plateau.Bouclier;
+import main.plateau.armes.massues.IronMace;
 
 public class Guerrier extends Personnage {
 
@@ -30,17 +31,17 @@ public class Guerrier extends Personnage {
         return nomPerso + ": with " + life + " life points and " + atk + " attack's points. Weapon : " + arme + " , shield:" + bouclier + "\n__\n";
     }
 
-    public Guerrier(String nomPerso, int life, int atk, String arme, String bouclier) {
+    public Guerrier(String nomPerso, int life, int atk, String bouclier) {
         this.nomPerso = nomPerso;
         this.life = life;
         this.atk = atk;
-        this.arme = new Arme(arme);
+        this.arme = new IronMace();
         this.bouclier = new Bouclier(bouclier);
     }
 
 
     public Guerrier() {
-        this("Garrosh", 10, 10, "hâche de ses morts! ", "Bouclier en tête de bouc! ");
+        this("Garrosh", 10, 10, "Bouclier en tête de bouc! ");
     }
 }
 
