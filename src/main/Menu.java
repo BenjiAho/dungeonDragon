@@ -1,11 +1,10 @@
 package main;
 
 import main.plateau.Bouclier;
-import main.plateau.Potion;
+import main.plateau.HeroOutOfBoard;
 import main.plateau.potions.BasicPotion;
 import main.plateau.spells.FireBall;
 import main.plateau.spells.Lightning;
-import main.plateau.spells.Spell;
 import main.personnages.Guerrier;
 import main.personnages.Magicien;
 import main.personnages.Personnage;
@@ -33,15 +32,6 @@ public class Menu {
     private Game game = new Game();
 
 
-//    public void plateau() {
-//        int[] num = new int[64];
-//        for (int i = 0; i < (num.length); i++) {
-//            num[i] = i + 1;
-//            System.out.println(num[i]);
-//        }
-//    }
-
-
     //    STRING TO INT
     private String getResult(String question) {
         System.out.println(question);
@@ -58,7 +48,7 @@ public class Menu {
 
 
     //    function to start game
-    public int startGame() {
+    public void startGame() {
 
         Personnage hero = null;
 
@@ -94,9 +84,13 @@ public class Menu {
                     throw new IllegalStateException("Unexpected value: " + selector2);
             }
         }
-
-        return game.heroMovements(hero);
+        try {
+            game.playGame(hero);
+        } catch (HeroOutOfBoard e) {
+            System.out.println("You WIN !");
+        }
     }
+
 
 
     public void mainMenu() {
@@ -106,6 +100,7 @@ public class Menu {
             Personnage perso;
 //            Scanner scanner = new Scanner(System.in);
             int selector = getIntResult("Game Menu : \n" + " 1-Create hero\n" + " 2-Show Heroes List\n" + " 3-Start Game\n 4-End Game\n");
+
             switch (selector) {
                 case 1:
                     Scanner clavier = new Scanner(System.in);
@@ -133,7 +128,7 @@ public class Menu {
                             System.out.println("End of game");
                             break;
                         default:
-                            System.out.println("choix non existant...LEAVING GAME");
+                            System.out.println("Invalid choice, back to main menu");
                     }
                     break;
                 case 2:
@@ -142,14 +137,13 @@ public class Menu {
                 case 3:
 //                plateau();
 
-                    System.out.println("You arrived at the end of the map. \n position: " + startGame() + "\n _____");
+                    startGame();
                     break;
                 case 4:
                     selectCondition = false;
                     break;
 //
             }
-
         }
     }
 
@@ -204,7 +198,7 @@ public class Menu {
                     do {
                         int atk = getIntResult("enter atk between" + ((isWarrior) ? "5 and 10" : "8 and 15"));
                         if (((isWarrior) ? atk >= 5 && atk <= 10 : atk >= 8 && atk <= 15)) {
-                            perso.setLifeLvl(atk);
+                            perso.setAtk(atk);
                             validAtk = true;
                         } else {
                             System.out.println("enter valid value *");
