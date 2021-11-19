@@ -20,25 +20,19 @@ import java.util.*;
 public class Menu {
 
     private final Scanner scanner = new Scanner(System.in);
-    private final ArrayList<Guerrier> warriors = new ArrayList<>();
-    private final ArrayList<Magicien> wizards = new ArrayList<>();
-    public final int mapSize = 64;
-    private Game game = new Game();
+
+//    private Game game = new Game();
 
 
-    public static void main(String[] args) {
-        System.out.println("Starting game");
-        Menu data = new Menu();
-        data.mainMenu();
-    }
+    
 
     //    STRING TO INT
-    private String getResult(String question) {
+    public String getResult(String question) {
         System.out.println(question);
         return scanner.nextLine();
     }
 
-    private int getIntResult(String question) {
+    public int getIntResult(String question) {
         try {
             return Integer.parseInt(getResult(question));
         } catch (Exception e) {
@@ -47,100 +41,65 @@ public class Menu {
     }
 
     //    function to start game
-    public void startGame() {
-
-        Personnage hero = null;
-
-        if (warriors.isEmpty() && wizards.isEmpty()) {
-            System.out.println("Vous n'avez pas créer de personnage");
-        } else {
-            System.out.println("Choisie ton personnage\n" + " 1-Guerrier\n" + " 2-Magicien");
 
 
-            int selector2 = scanner.nextInt();
-            switch (selector2) {
-                case 1:
-                    System.out.println("Choisir un guerrier :\n");
-                    for (int i = 0; i < warriors.size(); i++) {
-                        System.out.println("Guerrier : " + i + " : " + warriors.get(i));
-                    }
-                    System.out.println("entrer un chiffre");
-                    int selectWarrior = scanner.nextInt();
-                    hero = warriors.get(selectWarrior);
-                    System.out.println("Vous avez choisie : " + hero);
-                    break;
-                case 2:
-                    System.out.println("Choisir un magicien ?");
-                    for (int i = 0; i < wizards.size(); i++) {
-                        System.out.println("Magicien : " + i + " : " + wizards.get(i));
-                    }
-                    System.out.println("entrer un chiffre");
-                    int selectWizard = scanner.nextInt();
-                    hero = wizards.get(selectWizard);
-                    System.out.println("Vous avez choisie : " + hero);
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + selector2);
-            }
+    public Personnage wizardSelect(ArrayList<Magicien> wizards) {
+        Personnage hero;
+        System.out.println("Choisir un magicien ?");
+        for (int i = 0; i < wizards.size(); i++) {
+            System.out.println("Magicien : " + i + " : " + wizards.get(i));
         }
-        try {
-            game.playGame(hero);
-        } catch (HeroOutOfBoard e) {
-            System.out.println("You WIN !");
-        }
+        System.out.println("entrer un chiffre");
+        int selectWizard = scanner.nextInt();
+        hero = wizards.get(selectWizard);
+        System.out.println("Vous avez choisie : " + hero);
+        return hero;
     }
 
-    public void mainMenu() {
+    public Personnage warriorSelect(ArrayList<Guerrier> warriors) {
+        Personnage hero;
+        System.out.println("Choisir un guerrier :\n");
+        for (int i = 0; i < warriors.size(); i++) {
+            System.out.println("Guerrier : " + i + " : " + warriors.get(i));
+        }
+        System.out.println("entrer un chiffre");
+        int selectWarrior = scanner.nextInt();
+        hero = warriors.get(selectWarrior);
+        System.out.println("Vous avez choisie : " + hero);
+        return hero;
+    }
 
-        boolean selectCondition = true;
-        while (selectCondition) {
-            Personnage perso;
-//            Scanner scanner = new Scanner(System.in);
-            int selector = getIntResult("Game Menu : \n" + " 1-Create hero\n" + " 2-Show Heroes List\n" + " 3-Start Game\n 4-End Game\n");
 
-            switch (selector) {
-                case 1:
-                    Scanner clavier = new Scanner(System.in);
-                    int selector1 = getIntResult("Select character : \n1 for Warrior\n2 for Wizard\n3 to see heroes\n4 to leave");
-                    switch (selector1) {
-                        case 1:
-                            System.out.println("Warrior selected");
+    void displayExistingHeroes(ArrayList<Magicien> wizards, ArrayList<Guerrier> warriors) {
+        System.out.println("Warriors List: \n" + warriors + "\nWizards List: \n" + wizards);
+    }
 
-                            perso = new Guerrier();
+    void mainMenu(ArrayList<Magicien> wizards, ArrayList<Guerrier> warriors, int selector1) {
+        Personnage perso;
+        switch (selector1) {
+            case 1:
+                System.out.println("Warrior selected");
 
-                            warriors.add((Guerrier) perso);
-                            selectionPersonnage(perso, true);
-                            break;
-                        case 2:
-                            System.out.println("Wizard selected");
-                            perso = new Magicien();
-                            wizards.add((Magicien) perso);
-                            selectionPersonnage(perso, false);
-                            break;
-                        case 3:
-                            System.out.println(warriors);
-                            System.out.println(wizards);
-                            break;
-                        case 4:
-                            System.out.println("End of game");
-                            break;
-                        default:
-                            System.out.println("Invalid choice, back to main menu");
-                    }
-                    break;
-                case 2:
-                    System.out.println("Warriors List: \n" + warriors + "\nMages List: \n" + wizards);
-                    break;
-                case 3:
-//                plateau();
+                perso = new Guerrier();
 
-                    startGame();
-                    break;
-                case 4:
-                    selectCondition = false;
-                    break;
-//
-            }
+                warriors.add((Guerrier) perso);
+                selectionPersonnage(perso, true);
+                break;
+            case 2:
+                System.out.println("Wizard selected");
+                perso = new Magicien();
+                wizards.add((Magicien) perso);
+                selectionPersonnage(perso, false);
+                break;
+            case 3:
+                System.out.println(warriors);
+                System.out.println(wizards);
+                break;
+            case 4:
+                System.out.println("End of game");
+                break;
+            default:
+                System.out.println("Invalid choice, back to main menu");
         }
     }
 
@@ -290,6 +249,5 @@ public class Menu {
             }
         }
     }
-
 
 }

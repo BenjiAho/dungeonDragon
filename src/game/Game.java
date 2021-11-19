@@ -4,16 +4,20 @@ import game.personnages.Personnage;
 import game.plateau.setcases.HeroOutOfBoard;
 import game.plateau.setcases.Plateau;
 
+
+import game.personnages.Guerrier;
+import game.personnages.Magicien;
+
+
 import java.util.*;
 
 
 public class Game {
+    private Menu menu = new Menu();
+    private final ArrayList<Guerrier> warriors = new ArrayList<>();
+    private final ArrayList<Magicien> wizards = new ArrayList<>();
 
     private final Scanner scanner = new Scanner(System.in);
-
-    public void getPlateau() {
-    }
-
 
     public int playGame(Personnage hero) throws HeroOutOfBoard {
         int nSides = 6;
@@ -55,4 +59,62 @@ public class Game {
         }
         return position;
     }
+
+    public void launchGame() {
+
+        Personnage hero = null;
+
+        if (warriors.isEmpty() && wizards.isEmpty()) {
+            System.out.println("Vous n'avez pas créer de personnage");
+        } else {
+            System.out.println("Choisie ton personnage\n" + " 1-Guerrier\n" + " 2-Magicien");
+
+
+            int selector2 = scanner.nextInt();
+            switch (selector2) {
+                case 1:
+                    hero = menu.warriorSelect(warriors);
+                    break;
+                case 2:
+                    hero = menu.wizardSelect(wizards);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + selector2);
+            }
+        }
+        try {
+            playGame(hero);
+        } catch (HeroOutOfBoard e) {
+            System.out.println("You WIN !");
+        }
+    }
+
+    public void initMenu() {
+
+        boolean selectCondition = true;
+        while (selectCondition) {
+//            Scanner scanner = new Scanner(System.in);
+            int selector = menu.getIntResult("Game Menu : \n" + " 1-Create hero\n" + " 2-Show Heroes List\n" + " 3-Start Game\n 4-End Game\n");
+
+            switch (selector) {
+                case 1:
+                    Scanner clavier = new Scanner(System.in);
+                    int selector1 = menu.getIntResult("Select character : \n1 for Warrior\n2 for Wizard\n3 to see heroes\n4 to leave");
+                    menu.mainMenu(wizards, warriors, selector1);
+                    break;
+                case 2:
+                    menu.displayExistingHeroes(wizards, warriors);
+                    break;
+                case 3:
+                    launchGame();
+                    break;
+                case 4:
+                    selectCondition = false;
+                    break;
+//
+            }
+        }
+    }
+
+
 }
