@@ -1,17 +1,19 @@
-package game.plateau.spells;
+package game.plateau.equipement.spells;
 
+import game.personnages.Magicien;
+import game.personnages.Personnage;
 import game.plateau.setcases.Case;
 
 abstract public class Spell extends Case {
     private String name;
     private int atk;
 
-    protected Spell(String name,int atk) {
+    protected Spell(String name, int atk) {
         this.name = name;
         this.atk = atk;
     }
 
-//    getters setters
+    //    getters setters
     public String getName() {
         return name;
     }
@@ -28,10 +30,12 @@ abstract public class Spell extends Case {
         this.atk = atk;
     }
 
-
+    abstract public void interaction(Personnage hero);
+    abstract protected void setNewSpell(Magicien hero);
+    abstract protected void displaySpell();
 
     @Override
     public String toString() {
-        return "Spell:"+ name + " , atk : " + atk;
+        return "Spell:" + name + " , atk : " + atk;
     }
 }

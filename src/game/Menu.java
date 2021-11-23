@@ -1,19 +1,14 @@
 package game;
 
-import game.plateau.bouclier.Bouclier;
-import game.plateau.setcases.HeroOutOfBoard;
-import game.plateau.potions.BasicPotion;
-import game.plateau.spells.FireBall;
-import game.plateau.spells.Lightning;
+import game.plateau.equipement.armes.massues.WoodenMace;
+import game.plateau.equipement.armes.swords.WoodenSword;
+import game.plateau.equipement.bouclier.Bouclier;
+import game.plateau.equipement.potions.BasicPotion;
+import game.plateau.equipement.spells.FireBall;
+import game.plateau.equipement.spells.Lightning;
 import game.personnages.Guerrier;
 import game.personnages.Magicien;
 import game.personnages.Personnage;
-import game.plateau.armes.massues.CrystalMace;
-import game.plateau.armes.massues.IronMace;
-import game.plateau.armes.massues.StoneMace;
-import game.plateau.armes.swords.CrystalSword;
-import game.plateau.armes.swords.IcySword;
-import game.plateau.armes.swords.SteelSword;
 
 import java.util.*;
 
@@ -22,9 +17,6 @@ public class Menu {
     private final Scanner scanner = new Scanner(System.in);
 
 //    private Game game = new Game();
-
-
-    
 
     //    STRING TO INT
     public String getResult(String question) {
@@ -83,13 +75,13 @@ public class Menu {
                 perso = new Guerrier();
 
                 warriors.add((Guerrier) perso);
-                selectionPersonnage(perso, true);
+                customPersonnages(perso, true);
                 break;
             case 2:
                 System.out.println("Wizard selected");
                 perso = new Magicien();
                 wizards.add((Magicien) perso);
-                selectionPersonnage(perso, false);
+                customPersonnages(perso, false);
                 break;
             case 3:
                 System.out.println(warriors);
@@ -103,7 +95,7 @@ public class Menu {
         }
     }
 
-    public void selectionPersonnage(Personnage perso, boolean isWarrior) {
+    public void customPersonnages(Personnage perso, boolean isWarrior) {
         //Reading values from user
         Scanner sc = new Scanner(System.in);
         System.out.println(((isWarrior) ? "Enter name of the warrior: " : "Enter name of the wizard: "));
@@ -134,7 +126,7 @@ public class Menu {
                     do {
                         int life = getIntResult("enter life between" + ((isWarrior) ? "5 and 10" : "3 and 6"));
                         if (((isWarrior) ? life >= 5 && life <= 10 : life >= 3 && life <= 6)) {
-                            perso.setLifeLvl(life);
+                            perso.setLife(life);
                             validLife = true;
                         } else {
                             System.out.println("enter valid value *");
@@ -172,7 +164,7 @@ public class Menu {
                     break;
                 case 3:
                     System.out.println((isWarrior)
-                            ? "Pick a weapon: \n 1:Ironmace | 2: StoneMace | 3: CrystalSword | 4:SteelSword| 5:IcySword| 6:CrystalMace"
+                            ? "Pick a weapon: \n 1:WoodenMace | 2: WoodenSword "
                             : "1: Lightning | 2: FireBall");
 
 
@@ -180,22 +172,10 @@ public class Menu {
                         int armes = sc.nextInt();
                         switch (armes) {
                             case 1:
-                                ((Guerrier) perso).setArme(new IronMace());
+                                ((Guerrier) perso).setArme(new WoodenMace());
                                 break;
                             case 2:
-                                ((Guerrier) perso).setArme(new StoneMace());
-                                break;
-                            case 3:
-                                ((Guerrier) perso).setArme(new CrystalSword());
-                                break;
-                            case 4:
-                                ((Guerrier) perso).setArme(new SteelSword());
-                                break;
-                            case 5:
-                                ((Guerrier) perso).setArme(new IcySword());
-                                break;
-                            case 6:
-                                ((Guerrier) perso).setArme(new CrystalMace());
+                                ((Guerrier) perso).setArme(new WoodenSword());
                                 break;
                         }
 

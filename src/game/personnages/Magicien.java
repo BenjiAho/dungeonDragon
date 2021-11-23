@@ -1,8 +1,8 @@
 package game.personnages;
 
-import game.plateau.potions.BasicPotion;
-import game.plateau.spells.Lightning;
-import game.plateau.spells.Spell;
+import game.plateau.equipement.potions.BasicPotion;
+import game.plateau.equipement.spells.Lightning;
+import game.plateau.equipement.spells.Spell;
 
 public class Magicien extends Personnage {
     //3constructeurs sans paramètres, avec nom et avec nom/image/niveau de vie/force d'attaque
@@ -24,7 +24,7 @@ public class Magicien extends Personnage {
 
 
     public Magicien() {
-        this("GLANDALF", 6, 15, "Viagra Potion");
+        this("GLANDALF", 3, 10, "Viagra Potion");
     }
 
 

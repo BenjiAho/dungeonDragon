@@ -11,6 +11,6 @@ public class StartCase extends Case {
 
     @Override
     public void interaction(Personnage hero) {
-
+System.out.println("test interaction");
     }
 }

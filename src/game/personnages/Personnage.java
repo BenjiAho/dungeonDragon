@@ -21,12 +21,11 @@ abstract public class Personnage {
     public void setNomPerso(String nomPerso) {
         this.nomPerso = nomPerso;
     }
-    public void setLifeLvl(int life) {
+    public void setLife(int life) {
         this.life = life;
     }
     public void setAtk(int atk) {
         this.atk = atk;
     }
-
 
 }

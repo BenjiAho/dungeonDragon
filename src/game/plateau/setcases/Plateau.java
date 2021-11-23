@@ -1,11 +1,12 @@
 package game.plateau.setcases;
 
-import game.plateau.armes.massues.CrystalMace;
-import game.plateau.armes.massues.IronMace;
-import game.plateau.armes.massues.StoneMace;
-import game.plateau.armes.swords.CrystalSword;
-import game.plateau.armes.swords.IcySword;
-import game.plateau.armes.swords.SteelSword;
+import game.personnages.Personnage;
+import game.plateau.equipement.armes.massues.CrystalMace;
+import game.plateau.equipement.armes.massues.IronMace;
+import game.plateau.equipement.armes.massues.StoneMace;
+import game.plateau.equipement.armes.swords.CrystalSword;
+import game.plateau.equipement.armes.swords.IcySword;
+import game.plateau.equipement.armes.swords.SteelSword;
 import game.plateau.ennemies.dragons.ElderDragon;
 import game.plateau.ennemies.dragons.FireDragon;
 import game.plateau.ennemies.dragons.IceDragon;
@@ -16,10 +17,10 @@ import game.plateau.ennemies.goblins.Knocker;
 import game.plateau.ennemies.sorciers.Harry;
 import game.plateau.ennemies.sorciers.Merlin;
 import game.plateau.ennemies.sorciers.Saroumane;
-import game.plateau.potions.BasicPotion;
-import game.plateau.potions.LargePotion;
-import game.plateau.spells.FireBall;
-import game.plateau.spells.Lightning;
+import game.plateau.equipement.potions.BasicPotion;
+import game.plateau.equipement.potions.LargePotion;
+import game.plateau.equipement.spells.FireBall;
+import game.plateau.equipement.spells.Lightning;
 
 
 import java.util.ArrayList;
@@ -33,6 +34,10 @@ public class Plateau {
 
     public String get(int index) {
         return plateau.get(index).toString();
+    }
+
+    public void interaction(int index, Personnage hero){
+        plateau.get(index).interaction(hero);
     }
 
     public Plateau() {
@@ -114,11 +119,11 @@ public class Plateau {
     }
 
     private void SetMaceCases() {
-        plateau.set(2,new StoneMace());
-        plateau.set(5,new StoneMace());
-        plateau.set(11,new StoneMace());
+        plateau.set(2,new IronMace());
+        plateau.set(5,new IronMace());
+        plateau.set(11,new IronMace());
         plateau.set(22,new IronMace());
-        plateau.set(38,new CrystalMace());
+        plateau.set(38,new IronMace());
     }
 
     private void setLightningCases() {

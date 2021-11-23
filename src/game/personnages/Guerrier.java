@@ -1,8 +1,8 @@
 package game.personnages;
 
-import game.plateau.armes.Armes;
-import game.plateau.bouclier.Bouclier;
-import game.plateau.armes.massues.IronMace;
+import game.plateau.equipement.armes.Armes;
+import game.plateau.equipement.bouclier.Bouclier;
+import game.plateau.equipement.armes.massues.IronMace;
 
 public class Guerrier extends Personnage {
 
@@ -41,7 +41,7 @@ public class Guerrier extends Personnage {
 
 
     public Guerrier() {
-        this("Garrosh", 10, 10, "Bouclier en tête de bouc! ");
+        this("Garrosh", 5, 5, "Bouclier en tête de bouc! ");
     }
 }
 

@@ -1,6 +1,11 @@
-package game.plateau.potions;
+package game.plateau.equipement.potions;
 
+import game.personnages.Guerrier;
+import game.personnages.Magicien;
+import game.personnages.Personnage;
 import game.plateau.setcases.Case;
+
+import java.util.Scanner;
 
 abstract public class Potion extends Case {
     private String name;
@@ -11,10 +16,15 @@ abstract public class Potion extends Case {
         this.life= life;
     }
 
+    abstract public void interaction(Personnage hero);
+    abstract protected void setNewPotion(Magicien hero);
+    abstract protected void displayPotion();
+
+
     @Override
     public String toString() {
         return "Potion: " + name + '\'' +
-                ", life=" + life;
+                ", life: " + life;
     }
 
 //    getters setters

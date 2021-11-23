@@ -1,4 +1,4 @@
-package game.plateau.bouclier;
+package game.plateau.equipement.bouclier;
 
 import game.personnages.Personnage;
 import game.plateau.setcases.Case;
