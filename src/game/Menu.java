@@ -22,7 +22,7 @@ public class Menu {
     //    STRING TO INT
     public String getResult(String question) {
         System.out.println(question);
-        return scanner.nextLine();
+        return scanner.next();
     }
 
     public int getIntResult(String question) {
@@ -197,7 +197,8 @@ public class Menu {
                             + "\natk points: " + perso.getAtk()
                             + ((isWarrior)
                             ? "\nweapon: " + ((Guerrier) perso).getArme() + "\nshield: " + ((Guerrier) perso).getBouclier()
-                            : "\nspell: " + ((Magicien) perso).getSpell() + "\npotion: " + ((Magicien) perso).getPotion())
+                            : "\nspell: " + ((Magicien) perso).getSpell() + "\npotion: " +
+                            ((Magicien) perso).getPotion())
                             + "\n___________________________");
                     break;
                 case 4:

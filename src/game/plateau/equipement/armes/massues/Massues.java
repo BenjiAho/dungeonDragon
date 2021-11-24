@@ -10,7 +10,7 @@ abstract class Massues extends Armes {
     private String type;
 
     protected Massues(String type){
-        this("Mace", 5);
+        this("Mace", 3);
         this.type = type;
     }
 

@@ -1,6 +1,5 @@
 package game.plateau.equipement.potions;
 
-import game.personnages.Guerrier;
 import game.personnages.Magicien;
 import game.personnages.Personnage;
 import game.plateau.setcases.Case;
@@ -52,10 +51,10 @@ abstract public class Potion extends Case {
                     try {
                         setNewPotion((Magicien) hero);
                         System.out.println("hero new health: " + hero.getLife());
-                    } catch(ExcessLife e) {
+                    } catch (ExcessLife e) {
                         System.out.println(e.getMessage());
-                }
-                break;
+                    }
+                    break;
                 case 2:
                     break;
             }
@@ -65,9 +64,10 @@ abstract public class Potion extends Case {
     }
 
     protected void setNewPotion(Magicien hero) throws ExcessLife {
-        if(this.getLife() + hero.getLife() < hero.getMaxLife()){
+        //si la vie rendu + la vie actuelle du héros est supérieure à maxLife, alors set la vie du héros à son max.
+        if (this.getLife() + hero.getLife() < hero.getMaxLife()) {
             hero.setLife(this.getLife() + hero.getLife());
-        }else{
+        } else {
             hero.setLife(hero.getMaxLife());
             throw new ExcessLife();
         }

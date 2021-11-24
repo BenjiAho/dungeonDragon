@@ -36,18 +36,30 @@ public class Game {
                         break;
                 }
                 if (continu) {
-                        position += (Math.random() * 6) + 1;
-                     if (position >= plateau.size()) {
+                    position = heroForward(position);
+                    if (position >= plateau.size()) {
                         throw new HeroOutOfBoard();
                     }
                 }
                 System.out.println(hero.getNomPerso() + " is on the case :  " + position + "/64\n" + plateau.get(position - 1) + " \n ______");
                 plateau.interaction(position-1, hero);
 
-            } while (position < plateau.size());
+            } while (position < plateau.size() && hero.getLife() > 0);
         } else {
             System.out.println("Error position needs to be from 3");
         }
+        return position;
+    }
+
+//    avancer l'héros en random
+    private int heroForward(int position) {
+        position += (Math.random() * 6) + 1;
+        return position;
+    }
+
+    //    reculer l'héros en random
+    public int heroBackward(int position) {
+        position -= (Math.random() * 6) + 1;
         return position;
     }
 

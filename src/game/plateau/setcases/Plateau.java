@@ -1,12 +1,7 @@
 package game.plateau.setcases;
 
+import game.CharacterDead;
 import game.personnages.Personnage;
-import game.plateau.equipement.armes.massues.CrystalMace;
-import game.plateau.equipement.armes.massues.IronMace;
-import game.plateau.equipement.armes.massues.StoneMace;
-import game.plateau.equipement.armes.swords.CrystalSword;
-import game.plateau.equipement.armes.swords.IcySword;
-import game.plateau.equipement.armes.swords.SteelSword;
 import game.plateau.ennemies.dragons.ElderDragon;
 import game.plateau.ennemies.dragons.FireDragon;
 import game.plateau.ennemies.dragons.IceDragon;
@@ -17,13 +12,17 @@ import game.plateau.ennemies.goblins.Knocker;
 import game.plateau.ennemies.sorciers.Harry;
 import game.plateau.ennemies.sorciers.Merlin;
 import game.plateau.ennemies.sorciers.Saroumane;
+import game.plateau.equipement.armes.massues.IronMace;
+import game.plateau.equipement.armes.swords.CrystalSword;
+import game.plateau.equipement.armes.swords.IcySword;
+import game.plateau.equipement.armes.swords.SteelSword;
 import game.plateau.equipement.potions.BasicPotion;
 import game.plateau.equipement.potions.LargePotion;
 import game.plateau.equipement.spells.FireBall;
 import game.plateau.equipement.spells.Lightning;
 
-
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Plateau {
     private final ArrayList<Case> plateau = new ArrayList<>();
@@ -37,12 +36,18 @@ public class Plateau {
     }
 
     public void interaction(int index, Personnage hero){
-        plateau.get(index).interaction(hero);
+        try {
+            plateau.get(index).interaction(hero);
+        }catch (CharacterDead e){
+            System.out.println(e.getMessage());
+        }
     }
+
 
     public Plateau() {
         initPlateau();
         setCases();
+        swap();
         printCases();
     }
 
@@ -137,6 +142,14 @@ public class Plateau {
     private void initPlateau() {
         for (int i = 0; i < 64; i++) {
             plateau.add(new EmptyCase());
+        }
+    }
+
+    public void swap(){
+        for (int i=0;i<100;i++) {
+            int firstIndex = (int) ((Math.random() * 62) + 1);
+            int secondIndex = (int) ((Math.random() * 62) + 1);
+            Collections.swap(plateau, firstIndex, secondIndex);
         }
     }
 }
