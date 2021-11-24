@@ -10,21 +10,21 @@ public class Magicien extends Personnage {
     private Spell spell;
     private BasicPotion potion;
 
+
+
     public String toString() {
         return nomPerso + ": with " + life + " " + "life points and" + " " + atk + " atk points. Spell : " + " " + spell + " " + "with " + potion + "\n__\n";
     }
 
-    public Magicien(String nomPerso, int life, int atk, String potion) {
-        this.nomPerso = nomPerso;
-        this.life = life;
-        this.atk = atk;
-        this.spell = new Lightning();
-        this.potion = new BasicPotion();
+    public void equipSpell(Spell spell){
+        this.setAtk(this.defaultAtk + spell.getAtk());
     }
 
-
     public Magicien() {
-        this("GLANDALF", 3, 10, "Viagra Potion");
+        super("GLANDALF", 3, 6,10);
+        this.spell = new Lightning();
+        this.potion = new BasicPotion();
+        equipSpell(spell);
     }
 
 

@@ -31,11 +31,13 @@ abstract public class Spell extends Case {
     }
 
     abstract public void interaction(Personnage hero);
+
     abstract protected void setNewSpell(Magicien hero);
+
     abstract protected void displaySpell();
 
     @Override
     public String toString() {
-        return "Spell:" + name + " , atk : " + atk;
+        return "New Spell:" + name ;
     }
 }

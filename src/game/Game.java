@@ -3,21 +3,15 @@ package game;
 import game.personnages.Personnage;
 import game.plateau.setcases.HeroOutOfBoard;
 import game.plateau.setcases.Plateau;
-
-
 import game.personnages.Guerrier;
 import game.personnages.Magicien;
-
-
 import java.util.*;
-
 
 public class Game {
     private Plateau plateau = new Plateau();
     private Menu menu = new Menu();
     private final ArrayList<Guerrier> warriors = new ArrayList<>();
     private final ArrayList<Magicien> wizards = new ArrayList<>();
-
     private final Scanner scanner = new Scanner(System.in);
 
     public int playGame(Personnage hero) throws HeroOutOfBoard {
@@ -31,7 +25,6 @@ public class Game {
             System.out.println(hero.getNomPerso() + " start on the case :  " + position + "/64\n" + plateau.get(position-1) + " \n ______");
             do {
                 boolean continu = false;
-
                 System.out.println("Roll?\n  1-Yes\n  2-No");
                 int response = scanner.nextInt();
                 switch (response) {
@@ -42,15 +35,12 @@ public class Game {
                         System.exit(0);
                         break;
                 }
-
                 if (continu) {
                         position += (Math.random() * 6) + 1;
                      if (position >= plateau.size()) {
                         throw new HeroOutOfBoard();
                     }
                 }
-
-
                 System.out.println(hero.getNomPerso() + " is on the case :  " + position + "/64\n" + plateau.get(position - 1) + " \n ______");
                 plateau.interaction(position-1, hero);
 
@@ -62,14 +52,11 @@ public class Game {
     }
 
     public void launchGame() {
-
         Personnage hero = null;
-
         if (warriors.isEmpty() && wizards.isEmpty()) {
             System.out.println("Vous n'avez pas créer de personnage");
         } else {
             System.out.println("Choisie ton personnage\n" + " 1-Guerrier\n" + " 2-Magicien");
-
 
             int selector2 = scanner.nextInt();
             switch (selector2) {
@@ -91,11 +78,9 @@ public class Game {
     }
 
     public void initMenu() {
-
         boolean selectCondition = true;
         while (selectCondition) {
             int selector = menu.getIntResult("Game Menu : \n" + " 1-Create hero\n" + " 2-Show Heroes List\n" + " 3-Start Game\n 4-End Game\n");
-
             switch (selector) {
                 case 1:
                     Scanner clavier = new Scanner(System.in);

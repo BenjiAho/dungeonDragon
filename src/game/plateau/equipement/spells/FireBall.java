@@ -14,15 +14,16 @@ public class FireBall extends Spell{
 
     @Override
     public void interaction(Personnage hero) {
-        if (hero instanceof Magicien){
+        if (hero instanceof Magicien) {
             Scanner scanner = new Scanner(System.in);
 
             displaySpell();
             int potion = scanner.nextInt();
             switch (potion) {
                 case 1:
-                    setNewSpell(((Magicien) hero));
-                    System.out.println("hero new Spell: " + ((Magicien) hero).getSpell());
+                    setNewSpell((Magicien) hero);
+                    ((Magicien) hero).equipSpell(((Magicien) hero).getSpell());
+                    System.out.println(hero.getNomPerso()+ " get a " +((Magicien) hero).getSpell() +", Total ATK: " + hero.getAtk());
                     break;
                 case 2:
                     break;
@@ -34,7 +35,7 @@ public class FireBall extends Spell{
 
 
     protected void displaySpell() {
-        System.out.println("Vous avez trouver " + this.getName() + this.getAtk()+ "!\n" + "L'equiper?\n" + " 1-Oui\n" + " 2-Non");
+        System.out.println("Vous avez trouver " + this.getName() + " with an ATK of " + this.getAtk()+ "!\n" + "L'equiper?\n" + " 1-Oui\n" + " 2-Non");
     }
 
     protected void setNewSpell(Magicien hero) {

@@ -1,21 +1,26 @@
 package game.plateau.equipement.bouclier;
 
-import game.personnages.Personnage;
 import game.plateau.setcases.Case;
 
-public class Bouclier extends Case {
-    private final String bouclier;
+abstract public class Bouclier extends Case {
+    private String name;
 
-    public Bouclier(String bouclier) {
-        this.bouclier = bouclier;
+    protected Bouclier(String name) {
+        this.name = name;
     }
 
-    public String toString() {
-        return bouclier;
+    //    getters setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
-    public void interaction(Personnage hero) {
-
+    public String toString() {
+        return "New shield:" + name;
     }
 }
+

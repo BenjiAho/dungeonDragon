@@ -9,8 +9,4 @@ public class SteelSword extends Swords{
         super("Steel");
     }
 
-
-    public void interaction(){
-        Armes armes = new SteelSword();
-    }
 }

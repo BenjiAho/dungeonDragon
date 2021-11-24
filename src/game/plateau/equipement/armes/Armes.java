@@ -16,7 +16,6 @@ abstract public class Armes extends Case {
         this.atk = atk;
     }
 
-
 //    getters setters
     public String getName() {
         return name;

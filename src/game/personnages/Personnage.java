@@ -2,11 +2,21 @@ package game.personnages;
 
 abstract public class Personnage {
 
+    protected int maxLife;
     protected String nomPerso;
     protected int life;
     protected int atk;
+    protected int defaultAtk;
+//CONSTRUCTOR
 
-//GETTERS
+    public Personnage(String nomPerso, int life, int maxLife, int defaultAtk) {
+        this.nomPerso = nomPerso;
+        this.life = life;
+        this.maxLife = maxLife;
+        this.defaultAtk = defaultAtk;
+    }
+
+    //GETTERS
     public String getNomPerso() {
         return nomPerso;
     }
@@ -16,8 +26,11 @@ abstract public class Personnage {
     public int getAtk() {
         return atk;
     }
+    public int getMaxLife() {
+        return maxLife;
+    }
 
-//    SETTERS
+    //    SETTERS
     public void setNomPerso(String nomPerso) {
         this.nomPerso = nomPerso;
     }
@@ -27,5 +40,7 @@ abstract public class Personnage {
     public void setAtk(int atk) {
         this.atk = atk;
     }
+
+
 
 }

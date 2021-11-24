@@ -12,23 +12,4 @@ public class StoneMace extends Massues {
         super("Stone");
     }
 
-    public void interaction(Personnage hero) {
-        if(hero instanceof Guerrier){
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.println("Vous avez trouver une Icysword!\n" + "L'equiper?\n" + " 1-Oui\n" + " 2-Non");
-            int arme = scanner.nextInt();
-            switch (arme){
-                case 1:
-                    ((Guerrier)hero).setArme(new StoneMace());
-                    break;
-                case 2:
-                    break;
-            }
-
-        }else {
-            System.out.println("t baise faller prendre guerrier, CHEH!!!!");
-        }
-
-    }
 }

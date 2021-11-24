@@ -12,7 +12,4 @@ public class CrystalSword extends Swords{
         super("Crystal");
     }
 
-    public void interaction(){
-        Armes armes = new CrystalSword();
-    }
 }

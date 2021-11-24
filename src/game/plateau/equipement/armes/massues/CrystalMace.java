@@ -14,7 +14,4 @@ public class CrystalMace extends Massues{
         super("Crystal");
     }
 
-    public void interaction(){
-        Armes armes = new CrystalMace();
-    }
 }

@@ -11,15 +11,12 @@ abstract public class Potion extends Case {
     private String name;
     private int life;
 
-    protected Potion(String name, int life) {
-        this.name = name;
-        this.life= life;
-    }
-
-    abstract public void interaction(Personnage hero);
-    abstract protected void setNewPotion(Magicien hero);
     abstract protected void displayPotion();
 
+    protected Potion(String name, int life) {
+        this.name = name;
+        this.life = life;
+    }
 
     @Override
     public String toString() {
@@ -27,7 +24,7 @@ abstract public class Potion extends Case {
                 ", life: " + life;
     }
 
-//    getters setters
+    //    getters setters
     public String getName() {
         return name;
     }
@@ -42,5 +39,38 @@ abstract public class Potion extends Case {
 
     public void setLife(int life) {
         this.life = life;
+    }
+
+    public void interaction(Personnage hero) {
+        if (hero instanceof Magicien) {
+            Scanner scanner = new Scanner(System.in);
+
+            displayPotion();
+            int potion = scanner.nextInt();
+            switch (potion) {
+                case 1:
+                    try {
+                        setNewPotion((Magicien) hero);
+                        System.out.println("hero new health: " + hero.getLife());
+                    } catch(ExcessLife e) {
+                        System.out.println(e.getMessage());
+                }
+                break;
+                case 2:
+                    break;
+            }
+        } else {
+            System.out.println("Sorry you aren't a wizard");
+        }
+    }
+
+    protected void setNewPotion(Magicien hero) throws ExcessLife {
+        if(this.getLife() + hero.getLife() < hero.getMaxLife()){
+            hero.setLife(this.getLife() + hero.getLife());
+        }else{
+            hero.setLife(hero.getMaxLife());
+            throw new ExcessLife();
+        }
+
     }
 }

@@ -3,6 +3,7 @@ package game;
 import game.plateau.equipement.armes.massues.WoodenMace;
 import game.plateau.equipement.armes.swords.WoodenSword;
 import game.plateau.equipement.bouclier.Bouclier;
+import game.plateau.equipement.bouclier.GoatShield;
 import game.plateau.equipement.potions.BasicPotion;
 import game.plateau.equipement.spells.FireBall;
 import game.plateau.equipement.spells.Lightning;
@@ -71,9 +72,7 @@ public class Menu {
         switch (selector1) {
             case 1:
                 System.out.println("Warrior selected");
-
                 perso = new Guerrier();
-
                 warriors.add((Guerrier) perso);
                 customPersonnages(perso, true);
                 break;
@@ -207,8 +206,8 @@ public class Menu {
                             : "Set potion: ");
 
                     if (isWarrior) {
-                        String boucliers = sc.next();
-                        ((Guerrier) perso).setBouclier(new Bouclier(boucliers));
+                        String bouclier = sc.next();
+                        ((Guerrier) perso).setBouclier(new GoatShield());
                     } else {
 
                         ((Magicien) perso).setPotion(new BasicPotion());

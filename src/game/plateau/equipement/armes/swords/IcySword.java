@@ -8,7 +8,5 @@ public class IcySword extends Swords{
         super("Icy");
     }
 
-    public void interaction(){
-        Armes armes = new IcySword();
-    }
+
 }
