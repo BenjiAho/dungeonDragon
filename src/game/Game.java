@@ -1,6 +1,7 @@
 package game;
 
 import game.personnages.Personnage;
+import game.plateau.ennemies.Ennemi;
 import game.plateau.setcases.HeroOutOfBoard;
 import game.plateau.setcases.Plateau;
 import game.personnages.Guerrier;
@@ -10,6 +11,7 @@ import java.util.*;
 public class Game {
     private Plateau plateau = new Plateau();
     private Menu menu = new Menu();
+    private Ennemi ennemi;
     private final ArrayList<Guerrier> warriors = new ArrayList<>();
     private final ArrayList<Magicien> wizards = new ArrayList<>();
     private final Scanner scanner = new Scanner(System.in);
@@ -25,6 +27,13 @@ public class Game {
             System.out.println(hero.getNomPerso() + " start on the case :  " + position + "/64\n" + plateau.get(position-1) + " \n ______");
             do {
                 boolean continu = false;
+
+                if (hero.isRunAway()){
+                    position -= (Math.random() * 6) + 1;
+                    displayAndInteractPosition(hero, position);
+                    hero.setRunAway(false);
+                }
+
                 System.out.println("Roll?\n  1-Yes\n  2-No");
                 int response = scanner.nextInt();
                 switch (response) {
@@ -41,8 +50,7 @@ public class Game {
                         throw new HeroOutOfBoard();
                     }
                 }
-                System.out.println(hero.getNomPerso() + " is on the case :  " + position + "/64\n" + plateau.get(position - 1) + " \n ______");
-                plateau.interaction(position-1, hero);
+                displayAndInteractPosition(hero, position);
 
             } while (position < plateau.size() && hero.getLife() > 0);
         } else {
@@ -51,15 +59,14 @@ public class Game {
         return position;
     }
 
-//    avancer l'héros en random
-    private int heroForward(int position) {
-        position += (Math.random() * 6) + 1;
-        return position;
+    private void displayAndInteractPosition(Personnage hero, int position) {
+        System.out.println(hero.getNomPerso() + " is on the case :  " + position + "/64\n" + plateau.get(position - 1) + " \n ______");
+        plateau.interaction(position -1, hero);
     }
 
-    //    reculer l'héros en random
-    public int heroBackward(int position) {
-        position -= (Math.random() * 6) + 1;
+    //    avancer l'héros en random
+    private int heroForward(int position) {
+        position += (Math.random() * 6) + 1;
         return position;
     }
 
@@ -86,6 +93,8 @@ public class Game {
             playGame(hero);
         } catch (HeroOutOfBoard e) {
             System.out.println("You WIN !");
+//            hero.setLife(hero.getLife());
+//            hero.setAtk(hero.getAtk());
         }
     }
 

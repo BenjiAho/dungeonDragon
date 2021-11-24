@@ -1,7 +1,6 @@
 package game.plateau.ennemies;
 
 import game.CharacterDead;
-import game.Game;
 import game.personnages.Personnage;
 import game.plateau.setcases.Case;
 
@@ -11,7 +10,7 @@ abstract public class Ennemi extends Case {
     private String race;
     private int life;
     private int atk;
-    private Game game;
+
 
     protected Ennemi(String race, int life, int atk) {
         this.race = race;
@@ -47,21 +46,20 @@ abstract public class Ennemi extends Case {
     public void interaction(Personnage hero) throws CharacterDead {
         if (hero != null) {
             Scanner scanner = new Scanner(System.in);
-            displayEnemy();
+            foundEnemy();
             int fightChoice = scanner.nextInt();
             switch (fightChoice) {
                 case 1:
                     fight(hero);
                     break;
                 case 2:
-                    //game.heroBackward();
-
+                    hero.setRunAway(true);
                     break;
             }
         }
     }
 
-    public void displayEnemy() {
+    public void foundEnemy() {
         System.out.println("there is a " + this.getRace() + "\n1: fight \n2: flee");
     }
 
