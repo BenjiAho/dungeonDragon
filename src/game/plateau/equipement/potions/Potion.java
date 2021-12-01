@@ -6,7 +6,7 @@ import game.plateau.setcases.Case;
 
 import java.util.Scanner;
 
-abstract public class Potion extends Case {
+abstract public class Potion implements Case {
     private String name;
     private int life;
 

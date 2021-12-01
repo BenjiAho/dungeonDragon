@@ -48,13 +48,12 @@ public class Plateau {
         initPlateau();
         setCases();
         swap();
-        printCases();
     }
 
-    private void printCases() {
-        System.out.println(plateau);
-        System.out.println("Taille du plateau :" + plateau.size());
-    }
+//    private void printCases() {
+//        System.out.println(plateau);
+//        System.out.println("Taille du plateau :" + plateau.size());
+//    }
 
     private void setCases() {
         plateau.set(0,new StartCase());

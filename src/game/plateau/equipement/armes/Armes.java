@@ -7,7 +7,7 @@ import game.plateau.equipement.armes.swords.CrystalSword;
 
 import java.util.Scanner;
 
-abstract public class Armes extends Case {
+abstract public class Armes implements Case {
     private String name;
     private int atk;
 

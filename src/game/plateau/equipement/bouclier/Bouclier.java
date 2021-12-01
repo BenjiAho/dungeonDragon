@@ -2,7 +2,7 @@ package game.plateau.equipement.bouclier;
 
 import game.plateau.setcases.Case;
 
-abstract public class Bouclier extends Case {
+abstract public class Bouclier implements Case {
     private String name;
 
     protected Bouclier(String name) {

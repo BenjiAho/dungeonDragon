@@ -4,7 +4,7 @@ import game.personnages.Magicien;
 import game.personnages.Personnage;
 import game.plateau.setcases.Case;
 
-abstract public class Spell extends Case {
+abstract public class Spell implements Case {
     private String name;
     private int atk;
 

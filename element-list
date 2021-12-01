@@ -1,1 +1,13 @@
 game
+game.personnages
+game.plateau.ennemies
+game.plateau.ennemies.dragons
+game.plateau.ennemies.goblins
+game.plateau.ennemies.sorciers
+game.plateau.equipement.armes
+game.plateau.equipement.armes.massues
+game.plateau.equipement.armes.swords
+game.plateau.equipement.bouclier
+game.plateau.equipement.potions
+game.plateau.equipement.spells
+game.plateau.setcases

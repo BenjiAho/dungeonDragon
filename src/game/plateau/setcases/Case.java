@@ -4,7 +4,7 @@ package game.plateau.setcases;
 import game.CharacterDead;
 import game.personnages.Personnage;
 
-abstract public class Case{
+public interface Case{
 
-    public abstract void interaction(Personnage hero) throws CharacterDead;
+        void interaction(Personnage hero) throws CharacterDead;
 }

@@ -6,7 +6,7 @@ import game.plateau.setcases.Case;
 
 import java.util.Scanner;
 
-abstract public class Ennemi extends Case {
+abstract public class Ennemi implements Case {
     private String race;
     private int life;
     private int atk;

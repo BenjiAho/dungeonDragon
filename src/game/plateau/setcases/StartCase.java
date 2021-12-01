@@ -3,7 +3,7 @@ package game.plateau.setcases;
 import game.personnages.Personnage;
 import game.plateau.setcases.Case;
 
-public class StartCase extends Case {
+public class StartCase implements Case {
     @Override
     public String toString() {
         return "Starting position";
